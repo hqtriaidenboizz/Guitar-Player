@@ -11,5 +11,4 @@ const Home = () => {
 
 export default Home
 
-const styles = StyleSheet.create({
-})
+const styles = StyleSheet.create({})
