@@ -3,6 +3,7 @@ import React,{useState,useEffect} from 'react'
 import { DARKCOLORS } from '../constants/colors'
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation/Stack';
+import Lottie from 'lottie-react-native';
 
 type SplashScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -22,12 +23,14 @@ const Splash = ({navigation}:Props) => {
     },[])
     useEffect(() => {
         if(loader){
-            navigation.replace('Home')
+            navigation.replace('SignIn')
         }
     },[loader])
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={require('../assets/images/Logo.png')}/>
+
+        <Lottie source={require('../assets/images/logoGuitarPlayer.json')} autoPlay loop/>
+
     </View>
   )
 }
