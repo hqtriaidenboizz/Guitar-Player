@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';  
 
 import CustomInput from '../components/CustomInput'
 import { ScreenDimensions } from '../constants/dimensions'
@@ -8,6 +8,7 @@ import { DARKCOLORS } from '../constants/colors'
 import CustomButton from '../components/CustomButton';
 import { FONTFAMILY } from '../constants/fonts';
 import { FONTSIZE } from '../constants/sizes';
+import KeyboardAvoidWrapper from '../components/KeyboardAvoidWrapper';
 
 const SignIn = () => {
   const [hidePassword, setHidePassword] = React.useState<boolean>(true);
@@ -22,13 +23,14 @@ const SignIn = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidWrapper>
+      <View style={styles.container}>
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require('../assets/images/Logo.png')}/>
       </View>
       <View style={{marginHorizontal: 30, display:'flex', gap: 20}}>
         <CustomInput placeholder='Email'
-        onChangeText={onUserEmailChange}/>
+        onChangeText={onUserEmailChange}/>  
         <CustomInput 
           secureText={hidePassword}  
           placeholder='Password' 
@@ -42,6 +44,7 @@ const SignIn = () => {
       </View>
       <Text style={styles.text}>Don't have an account? Register</Text>
     </View>
+    </KeyboardAvoidWrapper>
   )
 }
 

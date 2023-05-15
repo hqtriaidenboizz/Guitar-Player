@@ -12,25 +12,22 @@ type SplashScreenNavigationProp = StackNavigationProp<
 type Props = {
   navigation: SplashScreenNavigationProp;
 };
-
+ 
 const Splash = ({navigation}:Props) => {
-
     const[loader,setLoader] = useState(false)
     useEffect(() => {
         setTimeout(() => {
             setLoader(true)
-        },3500)
+        },3200)
     },[])
     useEffect(() => {
         if(loader){
-            navigation.replace('SignIn')
+            navigation.replace('MyTabs')
         }
     },[loader])
   return (
     <View style={styles.container}>
-
         <Lottie source={require('../assets/images/logoGuitarPlayer.json')} autoPlay loop/>
-
     </View>
   )
 }
