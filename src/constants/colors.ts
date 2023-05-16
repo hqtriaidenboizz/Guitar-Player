@@ -3,6 +3,7 @@ export const DARKCOLORS = {
   sencentColor: '#212121',
   hightLightColor: '#C2FC4A',
   textColor_1: '#F3F3F3',
+  iconColor: '#BDBDBD',
   textColor_2: '#FFFFFF',
   textColor_3: '#090909',
 };
