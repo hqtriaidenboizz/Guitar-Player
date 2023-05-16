@@ -17,7 +17,7 @@ interface ICustomInputProps {
 
 const CustomInput: React.FC<ICustomInputProps> = ({onChangeText,onPress,secureText,error,...props}) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container,props.style]}>
             <TextInput 
             onChangeText={onChangeText}
             secureTextEntry={secureText}

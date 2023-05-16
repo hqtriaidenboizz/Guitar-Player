@@ -6,6 +6,7 @@ export const DARKCOLORS = {
   iconColor: '#BDBDBD',
   textColor_2: '#FFFFFF',
   textColor_3: '#090909',
+  textColor_4: '#BDBDBD',
 };
 
 export const LIGHTCOLORS = {
