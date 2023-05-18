@@ -37,7 +37,6 @@ const SongCategories = () => {
             <View style={GENERALSTLE.paddingHorizontal}>
               <CustomTitle title='Categories' moreIcon={true}/>
             </View>
-
                 <FlatList
                 style={styles.flatlist}
                 data={Data}

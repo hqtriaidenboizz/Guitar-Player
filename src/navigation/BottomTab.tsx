@@ -65,7 +65,8 @@ tabBar: {
   },
   header: {
     backgroundColor: DARKCOLORS.primaryColor,
-    height: 50,
+    height: 55,
+    // paddingTop: 10,
     elevation:0,
   },
   title: {

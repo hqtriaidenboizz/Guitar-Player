@@ -8,12 +8,13 @@ import { FONTSIZE } from '../constants/sizes'
 interface ITopSongProps {
     title?: string,
     image?: string,
-    artistName?: string
+    artistName?: string;
+    onPress?: () => void
 }
 
 const TopSong: React.FC<ITopSongProps> = (props) => {
   return (
-    <Pressable style={styles.container}>
+    <Pressable onPress={props.onPress} style={styles.container}>
         <View style={styles.absolute} >
                     <Image style={styles.image} source={require('../assets/images/re.jpg')}/>
                   <View style={styles.information}>

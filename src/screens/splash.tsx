@@ -4,6 +4,7 @@ import { DARKCOLORS } from '../constants/colors'
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation/Stack';
 import Lottie from 'lottie-react-native';
+import CustomStatusBar from '../constants/StatusBar';
 
 type SplashScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -18,7 +19,7 @@ const Splash = ({navigation}:Props) => {
     useEffect(() => {
         setTimeout(() => {
             setLoader(true)
-        },3200)
+        },2500)
     },[])
     useEffect(() => {
         if(loader){
@@ -27,7 +28,8 @@ const Splash = ({navigation}:Props) => {
     },[loader])
   return (
     <View style={styles.container}>
-        <Lottie source={require('../assets/images/logoGuitarPlayer.json')} autoPlay loop/>
+        <CustomStatusBar />
+        <Lottie source={require('../assets/images/logoGuitarPlayer.json')} autoPlay/>
     </View>
   )
 }

@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { FlatList, ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import React from 'react'
 import { RefreshDouble } from 'iconoir-react-native'
 import { DARKCOLORS } from '../constants/colors'
@@ -8,19 +8,16 @@ import TopSong from '../components/TopSong'
 import { Distance } from '../constants/distance'
 import { GENERALSTLE } from '../styles/generalStyle'
 import SongCategories from '../components/SongCategories'
+import YourPlaylist from '../components/YourPlaylist'
+import CustomStatusBar from '../constants/StatusBar'
+import TopPopularSongs from '../components/TopPopularSongs'
 
-const Data = [
-  {title: 'TheWeeknd',
-id: 1},
-{title: 'Justin',
-id: 2},
-{title: 'Thang(Ngot*)',
-id: 3},
-]
+
 
 const Home = () => {
   return (
     <View style={styles.container}>
+      <CustomStatusBar/>
           <View style={[styles.searchBar,GENERALSTLE.paddingHorizontal]}>
               <View style={styles.search}>
                    <CustomInput onChangeText={() => {}} style={styles.inputStyle} placeholder='Search'/>
@@ -29,23 +26,13 @@ const Home = () => {
               <RefreshDouble color={DARKCOLORS.iconColor} strokeWidth={1.5} width={35} height={35}/>
             </TouchableHighlight>
           </View>
-
-          <View>
-            <View style={GENERALSTLE.paddingHorizontal}>
-              <CustomTitle title='Top popular songs' moreIcon={true}/>
-            </View>
-            <FlatList
-              style={styles.Topsong}
-              data={Data}
-              // ItemSeparatorComponent={() => <View style={{width: 20}} />}
-              renderItem={({item}) => <TopSong title={item.title}/>}
-              horizontal
-              showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}
-          />
-          </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+            <TopPopularSongs/>
             <SongCategories/>
-
+            <YourPlaylist />
+            <View style={{height: 120}}>
+            </View>
+      </ScrollView>
     </View>
   )
 }
@@ -78,8 +65,4 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     borderRadius: 100,
   },
-  Topsong: {
-    paddingHorizontal:5,
-    marginVertical: 20,
-  }
 })
