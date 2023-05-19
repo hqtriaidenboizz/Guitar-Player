@@ -8,9 +8,8 @@ interface ICustomButtonProps {
     lable: string;
     onPress?: ()=> void;
     style?: StyleProp<ViewStyle>
-
 }
-const CustomButton: React.FC<ICustomButtonProps> = ({...props}) => {
+const CustomButton: React.FC<ICustomButtonProps> = (props) => {
   return (
     <Pressable onPress={props.onPress} style={styles.container}>
       <Text style={styles.textBtn}>{props.lable}</Text>

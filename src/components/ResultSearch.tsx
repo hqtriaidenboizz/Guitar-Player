@@ -1,10 +1,10 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import CustomTitle from './CustomTitle'
-import { GENERALSTLE } from '../styles/generalStyle'  
-import SongItem from './SongItem'
 import { useNavigation } from '@react-navigation/native'
 import { RootStackScreenProps } from '../types/navigation/types'
+import { GENERALSTLE } from '../styles/generalStyle'
+import CustomTitle from './CustomTitle'
+import SongItem from './SongItem'
 
 const Data = [
   {
@@ -28,7 +28,7 @@ const Data = [
   }
 ]
 
-const YourPlaylist= () => {
+const ResultSearch= () => {
   const navigation = useNavigation<RootStackScreenProps<'MyTabs'>['navigation']>();
 
   const handleNavigate = (id: number) => {
@@ -38,10 +38,11 @@ const YourPlaylist= () => {
   return (
     <View style={styles.container}>
         <View style={GENERALSTLE.paddingHorizontal}>
-             <CustomTitle title='Your Playlist'/>
+             <CustomTitle title='Recent search'/>
         </View>
         <FlatList
         style={[GENERALSTLE.paddingHorizontal]}
+        showsVerticalScrollIndicator={false}
          data={Data}
          renderItem={({item}) =>
          <SongItem onPress={()=> handleNavigate(item.id)} image={item.image} songName={item.songName} artistName={item.artistName}/>}/>
@@ -49,7 +50,7 @@ const YourPlaylist= () => {
   )
 }
 
-export default YourPlaylist
+export default ResultSearch
 
 const styles = StyleSheet.create({
     container: {

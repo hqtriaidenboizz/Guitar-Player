@@ -7,14 +7,12 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { DARKCOLORS } from './colors';
 import { FONTSIZE } from './sizes';
 import { FONTFAMILY } from './fonts';
+import HeaderTitle from '../components/HeaderTitle';
 export const BottomTabData = [
   {
     route: 'Home',
     options: {
-      headerTitle: () => <View style={styles.container}>
-        <Image style={styles.logo} source={require('../assets/images/logoIcon.png')}/>
-        <Text style={styles.title}>Songs</Text>
-      </View>,
+      headerTitle: () => <HeaderTitle title='Songs'/>,
       tabBarIcon: ({focused} : any) => (
        <View  style={focused? styles.iconFocused: null}  >
         <AlbumOpen color={focused ? DARKCOLORS.primaryColor : DARKCOLORS.iconColor} width={35} height={35} strokeWidth={1.5}/>
@@ -26,10 +24,7 @@ export const BottomTabData = [
   {
     route: 'Tools',
    options: {
-    headerTitle: () => <View style={styles.container}>
-        <Image style={styles.logo} source={require('../assets/images/logoIcon.png')}/>
-        <Text style={styles.title}>Tools</Text>
-      </View>,
+    headerTitle: () => <HeaderTitle title='Tools'/>,
       tabBarIcon: ({focused} : any) => (
       <View  style={focused? styles.iconFocused: null}  >
         <PlaystationGamepad color={focused ? DARKCOLORS.primaryColor : DARKCOLORS.iconColor} width={35} height={35} strokeWidth={1.5}/>
@@ -41,10 +36,7 @@ export const BottomTabData = [
   {
     route: 'Tune',
     options: {
-    headerTitle: () => <View style={styles.container}>
-        <Image style={styles.logo} source={require('../assets/images/logoIcon.png')}/>
-        <Text style={styles.title}>Tune</Text>
-      </View>,
+    headerTitle: () => <HeaderTitle title='Tune'/>,
       tabBarIcon: ({focused} : any) => (
        <View  style={focused? styles.iconFocused: null}  >
         <VoiceScan color={focused ? DARKCOLORS.primaryColor : DARKCOLORS.iconColor} width={35} height={35} strokeWidth={1.5}/>
@@ -56,10 +48,7 @@ export const BottomTabData = [
   {
     route: 'Setting',
     options: {
-    headerTitle: () => <View style={styles.container}>
-        <Image style={styles.logo} source={require('../assets/images/logoIcon.png')}/>
-        <Text style={styles.title}>Settings</Text>
-      </View>,
+    headerTitle: () => <HeaderTitle title='Settings'/>,
       tabBarIcon: ({focused} : any) => (
        <View  style={focused? styles.iconFocused: null}  >
         <Settings color={focused ? DARKCOLORS.primaryColor : DARKCOLORS.iconColor} width={35} height={35} strokeWidth={1.5}/>
@@ -75,20 +64,5 @@ iconFocused: {
     padding: 15,
     backgroundColor: DARKCOLORS.hightLightColor,
     borderRadius: 360,
-},
-logo:{
-  width: 50,
-  height: 50,
-},
-container: {
-  display: 'flex',
-  flexDirection:'row',
-  alignItems:'center',
-  gap: 10,
-},
-title: {
-  fontSize: FONTSIZE.size_2,
-  fontFamily: FONTFAMILY.medium,
-  color:DARKCOLORS.hightLightColor
 }
 })

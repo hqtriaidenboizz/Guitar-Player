@@ -5,6 +5,7 @@ import { BlurView } from '@react-native-community/blur';
 
 import { BottomTabData } from '../constants/bottomtab';
 import { DARKCOLORS } from '../constants/colors';
+import { HEADERSTYLE } from '../styles/generalStyle';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,7 +13,7 @@ function MyTabs() {
   return (
     <Tab.Navigator 
     screenOptions={{
-    headerStyle: styles.header,
+    headerStyle: HEADERSTYLE.header,
     headerTitleStyle: styles.title,
     tabBarShowLabel: false,
     tabBarStyle: styles.tabBar,
@@ -63,12 +64,7 @@ tabBar: {
     borderWidth: 0.2,
     borderColor: DARKCOLORS.iconColor   
   },
-  header: {
-    backgroundColor: DARKCOLORS.primaryColor,
-    height: 55,
-    // paddingTop: 10,
-    elevation:0,
-  },
+
   title: {
     color:DARKCOLORS.hightLightColor
   }

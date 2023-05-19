@@ -11,16 +11,21 @@ interface ICustomInputProps {
     error?: string;
     icon?: JSX.Element | null;
     onPress?: ()=> void;
-    style?: StyleProp<ViewStyle>
-
+    onFocus?: () => void;
+    style?: StyleProp<ViewStyle>;
+    autoFocus?: boolean;
+    showSoftInputOnFocus?: boolean;
 }
 
-const CustomInput: React.FC<ICustomInputProps> = ({onChangeText,onPress,secureText,error,...props}) => {
+const CustomInput: React.FC<ICustomInputProps> = (props) => {
     return (
         <View style={[styles.container,props.style]}>
             <TextInput 
-            onChangeText={onChangeText}
-            secureTextEntry={secureText}
+            showSoftInputOnFocus={props.showSoftInputOnFocus}
+            autoFocus={props.autoFocus}
+            onFocus={props.onFocus}
+            onChangeText={props.onChangeText}
+            secureTextEntry={props.secureText}
             placeholderTextColor={DARKCOLORS.textColor_1}
             style={styles.textInput} placeholder={props.placeholder}/>
             {props.icon}

@@ -41,6 +41,7 @@ const SongCategories = () => {
                 style={styles.flatlist}
                 data={Data}
                 horizontal
+              contentContainerStyle={styles.content}
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({item}) => <SongCategoryItem name={item.title} color={item.color} image={item.image}></SongCategoryItem> }/>
@@ -54,6 +55,9 @@ export default SongCategories
 const styles = StyleSheet.create({
     flatlist: {
         marginVertical: 20,
-        paddingHorizontal: 5,
+        
+    },
+    content: {
+        paddingHorizontal: 5
     }
 })

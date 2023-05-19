@@ -28,6 +28,7 @@ const TopPopularSongs = () => {
             <FlatList
               style={styles.Topsong}
               data={Data}
+              contentContainerStyle={styles.content}
               renderItem={({item}) => <TopSong onPress={()=> handleNavigate(item.id)} title={item.title}/>}
               horizontal
               showsVerticalScrollIndicator={false}
@@ -41,7 +42,9 @@ export default TopPopularSongs
 
 const styles = StyleSheet.create({
 Topsong: {
-    paddingHorizontal:5,
     marginVertical: 20,
   },
+  content: {
+    paddingHorizontal: 5,
+  }
 })
