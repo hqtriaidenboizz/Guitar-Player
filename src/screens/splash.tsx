@@ -7,6 +7,7 @@ import Lottie from 'lottie-react-native';
 import CustomStatusBar from '../constants/StatusBar';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackScreenProps } from '../types/navigation/types';
+import MainContainer from '../components/MainContainer';
 
 
 const Splash = () => {
@@ -23,24 +24,16 @@ const Splash = () => {
         }
     },[loader])
   return (
-    <View style={styles.container}>
+    <MainContainer>
         <CustomStatusBar />
         <Lottie source={require('../assets/images/logoGuitarPlayer.json')} autoPlay/>
-    </View>
+    </MainContainer>
   )
 }
 
 export default Splash
 
 const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        height: '100%',
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'center',
-        backgroundColor: DARKCOLORS.primaryColor,
-    },
     logo: {
         width: 170,
         height:154

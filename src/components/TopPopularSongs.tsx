@@ -29,7 +29,7 @@ const TopPopularSongs = () => {
               style={styles.Topsong}
               data={Data}
               contentContainerStyle={styles.content}
-              renderItem={({item}) => <TopSong onPress={()=> handleNavigate(item.id)} title={item.title}/>}
+              renderItem={({item}) => <TopSong  onPress={()=> handleNavigate(item.id)} title={item.title}/>}
               horizontal
               showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}

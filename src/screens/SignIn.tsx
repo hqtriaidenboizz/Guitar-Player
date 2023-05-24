@@ -23,6 +23,7 @@ const SignIn = () => {
   }
 
   return (
+    
     <KeyboardAvoidWrapper>
       <View style={styles.container}>
       <View style={styles.logoContainer}>

@@ -8,6 +8,7 @@ import TopPopularSongs from '../components/TopPopularSongs'
 import SearchBar from '../components/SearchBar'
 import { useNavigation } from '@react-navigation/native'
 import { RootStackScreenProps } from '../types/navigation/types'
+import MainContainer from '../components/MainContainer'
 
 const Home = () => {
   const navigation = useNavigation<RootStackScreenProps<'Search'>['navigation']>()
@@ -15,7 +16,7 @@ const Home = () => {
     navigation.navigate('Search')
   }
   return (
-    <View style={styles.container}>
+    <MainContainer>
       <CustomStatusBar/>
       <SearchBar showSoftInputOnFocus={false} onFocus={() => handleNavigate()}/>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -23,10 +24,9 @@ const Home = () => {
         <SongCategories/>
         <YourPlaylist />
         <View style={{height: 120}}>
-          
         </View>
       </ScrollView>
-    </View>
+    </MainContainer>
   )
 }
 

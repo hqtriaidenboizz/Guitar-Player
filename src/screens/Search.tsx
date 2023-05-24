@@ -7,17 +7,20 @@ import SearchTopics from '../components/SearchTopics'
 import CustomTitle from '../components/CustomTitle'
 import { GENERALSTLE } from '../styles/generalStyle'
 import ResultSearch from '../components/ResultSearch'
+import MainContainer from '../components/MainContainer'
 
 const Search = () => {
   return (
-    <ScrollView  style={styles.container}>
+    <MainContainer>
       <CustomStatusBar/>
       <SearchBar autoFocus={true}/>
       <SearchTopics/>
-      <View style={styles.resultContainer}>
-        <ResultSearch/>
-      </View>
-    </ScrollView>
+      <ScrollView  style={styles.container}>
+        <View style={styles.resultContainer}>
+          <ResultSearch/>
+        </View>
+      </ScrollView>
+    </MainContainer>
 
   )
 }

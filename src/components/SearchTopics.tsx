@@ -34,7 +34,12 @@ const SearchTopics = () => {
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.content}
       renderItem={({item}) =>
-        <SearchTopicsItem onPress={() => handleSeclect(item.id)} id={item.id} styleText={isSelectedTopic(item.id) && styles.activeText} styleBG={isSelectedTopic(item.id) && styles.activeBG}  title={item.name}/>}
+        <SearchTopicsItem 
+          onPress={() => handleSeclect(item.id)} 
+          id={item.id} 
+          styleText={isSelectedTopic(item.id) && styles.activeText} 
+          styleBG={isSelectedTopic(item.id) && styles.activeBG}  
+          title={item.name}/>}
       />
     </View>
   )
