@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { GENERALSTLE } from '../styles/generalStyle'
-import CustomTitle from './CustomTitle'
+import { GENERALSTLE } from '../../styles/generalStyle'
+import CustomTitle from '../Global/CustomTitle'
 import { FlatList } from 'react-native-gesture-handler'
 import TopSong from './TopSong'
 import { useNavigation } from '@react-navigation/native'
-import { RootStackScreenProps } from '../types/navigation/types'
+import { RootStackScreenProps } from '../../types/navigation/types'
 
 const Data = [
   {title: 'TheWeeknd',

@@ -1,10 +1,10 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { RootStackScreenProps } from '../types/navigation/types'
-import { GENERALSTLE } from '../styles/generalStyle'
-import CustomTitle from './CustomTitle'
-import SongItem from './SongItem'
+import { RootStackScreenProps } from '../../types/navigation/types'
+import { GENERALSTLE } from '../../styles/generalStyle'
+import CustomTitle from '../Global/CustomTitle'
+import SongItem from '../SongLibrary/SongItem'
 
 const Data = [
   {

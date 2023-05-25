@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { DARKCOLORS } from '../constants/colors'
-import MainContainer from '../components/MainContainer'
+import MainContainer from '../components/Global/MainContainer'
 
 const Tune = () => {
   return (

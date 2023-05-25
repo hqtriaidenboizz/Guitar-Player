@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View,Image } from 'react-native'
 import React from 'react'
-import { FONTSIZE } from '../constants/sizes'
-import { FONTFAMILY } from '../constants/fonts'
-import { DARKCOLORS } from '../constants/colors'
+import { FONTSIZE } from '../../constants/sizes'
+import { FONTFAMILY } from '../../constants/fonts'
+import { DARKCOLORS } from '../../constants/colors'
 
 interface HeaderTitleProps {
     title: string
@@ -11,7 +11,7 @@ interface HeaderTitleProps {
 const HeaderTitle : React.FC<HeaderTitleProps> = (props) => {
   return (
     <View style={styles.container}>
-        <Image style={styles.logo} source={require('../assets/images/logoIcon.png')}/>
+        <Image style={styles.logo} source={require('../../assets/images/logoIcon.png')}/>
         <Text style={styles.title}>{props.title}</Text>
       </View>
   )

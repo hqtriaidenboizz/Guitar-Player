@@ -1,7 +1,7 @@
 import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { GENERALSTLE } from '../styles/generalStyle'
-import CustomTitle from './CustomTitle'
+import { GENERALSTLE } from '../../styles/generalStyle'
+import CustomTitle from '../Global/CustomTitle'
 import SongCategoryItem from './SongCategoryItem'
 
 const Data = [

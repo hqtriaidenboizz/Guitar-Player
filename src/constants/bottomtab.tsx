@@ -7,7 +7,7 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { DARKCOLORS } from './colors';
 import { FONTSIZE } from './sizes';
 import { FONTFAMILY } from './fonts';
-import HeaderTitle from '../components/HeaderTitle';
+import HeaderTitle from '../components/Global/HeaderTitle';
 export const BottomTabData = [
   {
     route: 'Home',

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import { DARKCOLORS, LIGHTCOLORS } from '../constants/colors'
-import MainContainer from '../components/MainContainer'
+import MainContainer from '../components/Global/MainContainer'
 
 const Tools = () => {
   return (

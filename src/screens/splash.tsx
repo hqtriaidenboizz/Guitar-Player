@@ -7,7 +7,7 @@ import Lottie from 'lottie-react-native';
 import CustomStatusBar from '../constants/StatusBar';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackScreenProps } from '../types/navigation/types';
-import MainContainer from '../components/MainContainer';
+import MainContainer from '../components/Global/MainContainer';
 
 
 const Splash = () => {

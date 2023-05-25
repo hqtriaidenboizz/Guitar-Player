@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View,Pressable, Image } from 'react-native'
 import React from 'react'
 import { Play } from 'iconoir-react-native'
-import { DARKCOLORS } from '../constants/colors'
-import { FONTFAMILY } from '../constants/fonts'
-import { FONTSIZE } from '../constants/sizes'
+import { DARKCOLORS } from '../../constants/colors'
+import { FONTFAMILY } from '../../constants/fonts'
+import { FONTSIZE } from '../../constants/sizes'
 
 interface ISongItemProps {
     id?: string

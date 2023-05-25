@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleProp, StyleSheet, Text, TextInput, View, ViewStyle } from 'react-native'
-import { DARKCOLORS } from '../constants/colors';
-import { FONTFAMILY } from '../constants/fonts';
-import { FONTSIZE } from '../constants/sizes';
+import { DARKCOLORS } from '../../constants/colors';
+import { FONTFAMILY } from '../../constants/fonts';
+import { FONTSIZE } from '../../constants/sizes';
 
 interface ICustomInputProps {
     onChangeText: (text: string) => void;

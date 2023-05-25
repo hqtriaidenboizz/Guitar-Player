@@ -2,12 +2,12 @@ import { StyleSheet, Text, View,ScrollView } from 'react-native'
 import React from 'react'
 import { DARKCOLORS } from '../constants/colors'
 import CustomStatusBar from '../constants/StatusBar'
-import SearchBar from '../components/SearchBar'
-import SearchTopics from '../components/SearchTopics'
-import CustomTitle from '../components/CustomTitle'
+import SearchBar from '../components/Search/SearchBar'
+import SearchTopics from '../components/Search/SearchTopics'
+import CustomTitle from '../components/Global/CustomTitle'
 import { GENERALSTLE } from '../styles/generalStyle'
-import ResultSearch from '../components/ResultSearch'
-import MainContainer from '../components/MainContainer'
+import ResultSearch from '../components/Search/ResultSearch'
+import MainContainer from '../components/Global/MainContainer'
 
 const Search = () => {
   return (

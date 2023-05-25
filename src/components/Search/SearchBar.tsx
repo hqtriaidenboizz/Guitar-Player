@@ -1,9 +1,9 @@
 import { StyleSheet,TouchableHighlight, Text, View ,Pressable} from 'react-native'
 import React from 'react'
-import { GENERALSTLE } from '../styles/generalStyle'
+import { GENERALSTLE } from '../../styles/generalStyle'
 import { RefreshDouble } from 'iconoir-react-native'
-import { DARKCOLORS } from '../constants/colors'
-import CustomInput from './CustomInput'
+import { DARKCOLORS } from '../../constants/colors'
+import CustomInput from '../Global/CustomInput'
 
 interface SearchBarProps {
     onFocus?: () => void;

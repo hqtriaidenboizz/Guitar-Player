@@ -1,22 +1,21 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import CustomTitle from './CustomTitle';
-import { DARKCOLORS } from '../constants/colors';
-import { FONTFAMILY } from '../constants/fonts';
-import { FONTSIZE } from '../constants/sizes';
+import CustomTitle from '../Global/CustomTitle';
+import { DARKCOLORS } from '../../constants/colors';
+import { FONTFAMILY } from '../../constants/fonts';
+import { FONTSIZE } from '../../constants/sizes';
 
 interface ChordLyric {
     chord: string;
     lyric: string;
 }
 interface LyricsData {
-    
 }
 const SongLyrics: React.FC<{lyrics: LyricsData}> = ({lyrics}) => {
     
   return (
     <View>
-                {
+          {
             Object.entries(lyrics).map(([sectionName, lines], index) => (
             <View key={index}>
               <CustomTitle title={sectionName}/>
@@ -25,10 +24,10 @@ const SongLyrics: React.FC<{lyrics: LyricsData}> = ({lyrics}) => {
                   <View key={segmentIndex} style={styles.lines}>
                       {
                         segment.map((line: ChordLyric, index: number) => 
-                        <View key={index} style={{ marginRight: 5 }}>
-                    <Text style={styles.chord}>{line.chord}</Text>
-                    <Text style={styles.lyric}>{line.lyric}</Text>
-                  </View>)
+                          <View key={index} style={{ marginRight: 5 }}>
+                            <Text style={styles.chord}>{line.chord}</Text>
+                            <Text style={styles.lyric}>{line.lyric}</Text>
+                          </View>)
                       }
                   </View>
                 ))}
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
         fontSize: FONTSIZE.size_3,
         paddingVertical: 5,
         display:'flex',
-        marginBottom: 10,
+        marginBottom:10
     },
     chord: {
         fontFamily: FONTFAMILY.bold,

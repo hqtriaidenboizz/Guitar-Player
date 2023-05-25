@@ -1,8 +1,8 @@
 import { ViewStyle,TextStyle,StyleProp ,StyleSheet, Text, View,Pressable } from 'react-native'
 import React from 'react'
-import { DARKCOLORS } from '../constants/colors';
-import { FONTFAMILY } from '../constants/fonts';
-import { FONTSIZE } from '../constants/sizes';
+import { DARKCOLORS } from '../../constants/colors';
+import { FONTFAMILY } from '../../constants/fonts';
+import { FONTSIZE } from '../../constants/sizes';
 
 interface SearchTopicsItemProps {
     onPress?: () => void;

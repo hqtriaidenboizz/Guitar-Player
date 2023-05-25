@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, FlatList} from 'react-native'
 import React, { useState } from 'react'
-import SearchTopicsItem from './SearchTopicsItem'
-import { DARKCOLORS } from '../constants/colors'
+import SearchTopicsItem from '../SongDetail/SearchTopicsItem'
+import { DARKCOLORS } from '../../constants/colors'
 
 const Data = [
     {id: 1,

@@ -2,13 +2,13 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons';  
 
-import CustomInput from '../components/CustomInput'
+import CustomInput from '../components/Global/CustomInput'
 import { ScreenDimensions } from '../constants/dimensions'
 import { DARKCOLORS } from '../constants/colors'
-import CustomButton from '../components/CustomButton';
+import CustomButton from '../components/Global/CustomButton';
 import { FONTFAMILY } from '../constants/fonts';
 import { FONTSIZE } from '../constants/sizes';
-import KeyboardAvoidWrapper from '../components/KeyboardAvoidWrapper';
+import KeyboardAvoidWrapper from '../components/Global/KeyboardAvoidWrapper';
 
 const SignIn = () => {
   const [hidePassword, setHidePassword] = React.useState<boolean>(true);

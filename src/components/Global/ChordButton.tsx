@@ -1,7 +1,7 @@
 import { StyleProp, ViewStyle,TextStyle,Pressable, StyleSheet, Text, View } from 'react-native'
-import { DARKCOLORS } from '../constants/colors';
-import { FONTFAMILY } from '../constants/fonts';
-import { FONTSIZE } from '../constants/sizes';
+import { DARKCOLORS } from '../../constants/colors';
+import { FONTFAMILY } from '../../constants/fonts';
+import { FONTSIZE } from '../../constants/sizes';
 
 interface ChordButtonProps {
     name?: string;
@@ -9,11 +9,11 @@ interface ChordButtonProps {
 		styleBG?: StyleProp<ViewStyle>;
     styleText?: StyleProp<TextStyle>;
     id?: any;
-
+    onLayout?: () => void;
 }
 const ChordButton: React.FC<ChordButtonProps> = (props) => {
   return (
-    <Pressable key={props.id} onPress={props.onPress} style={[styles.container,props.styleBG]}>
+    <Pressable onLayout={props.onLayout} key={props.id} onPress={props.onPress} style={[styles.container,props.styleBG]}>
       <Text style={[styles.title,props.styleText]}>{props.name}</Text>
     </Pressable>
   )

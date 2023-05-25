@@ -1,9 +1,9 @@
 import { Pressable, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native'
 import React from 'react'
-import { ScreenDimensions } from '../constants/dimensions';
-import { DARKCOLORS } from '../constants/colors';
-import { FONTFAMILY } from '../constants/fonts';
-import { FONTSIZE } from '../constants/sizes';
+import { ScreenDimensions } from '../../constants/dimensions';
+import { DARKCOLORS } from '../../constants/colors';
+import { FONTFAMILY } from '../../constants/fonts';
+import { FONTSIZE } from '../../constants/sizes';
 interface ICustomButtonProps {
     lable: string;
     onPress?: ()=> void;

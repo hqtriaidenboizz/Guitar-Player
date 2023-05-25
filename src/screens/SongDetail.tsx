@@ -1,18 +1,17 @@
 import { Animated, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState,useRef,useEffect } from 'react'
 import { DARKCOLORS } from '../constants/colors'
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { RootStackScreenProps } from '../types/navigation/types';
-import MainContainer from '../components/MainContainer';
-import ScreenHeader from '../components/ScreenHeader';
+import MainContainer from '../components/Global/MainContainer';
+import ScreenHeader from '../components/Global/ScreenHeader';
 import { FONTFAMILY } from '../constants/fonts';
-import SongInfo from '../components/SongInfo';
+import SongInfo from '../components/SongDetail/SongInfo';
 import { GENERALSTLE } from '../styles/generalStyle';
-import CustomTitle from '../components/CustomTitle';
-import ChordButton from '../components/ChordButton';
-import SongLyrics from '../components/SongLyrics';
+import SongLyrics from '../components/SongDetail/SongLyrics';
+import ChordsOfSong from '../components/SongDetail/ChordsOfSong';
 
 const Data =
  {
@@ -123,39 +122,17 @@ const SongDetail = () => {
     const navigation = useNavigation<RootStackScreenProps<'SongDetail'>['navigation']>()
     const route= useRoute<RootStackScreenProps<'SongDetail'>['route']>()
     const id = route.params
-    const [selectTopic,setSelectTopic] = useState<any>();
-    const handleSeclect = (id: any) => {
-      setSelectTopic(id)
-    }
-    const isSelectedTopic= (id: any) => {
-      return id === selectTopic
-    }
     const handleNavigate = () => {
       navigation.goBack()
     }
+    const ref = useRef<any>(null);
   return (
-    <MainContainer onTouchStart={() => setSelectTopic(null)
-    }>
+    <MainContainer onTouchStart={() =>{ref.current.unSelect()}}>
       <ScreenHeader onPress={handleNavigate} iconRight={true} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <SongInfo  style={styles.songItem} />
         <View style={[GENERALSTLE.paddingHorizontal,styles.chords]}>
-          <CustomTitle title='Chords'/>
-          <View style={styles.chordsList}>  
-              {Data.chords.map((item: string, index: number)=> 
-                <View 
-                key={index}
-                >
-                  <View style={isSelectedTopic(index)? styles.chord : styles.unshow}>
-                    <Text>{item}</Text>
-                  </View>
-                  <ChordButton 
-                onPress={() => handleSeclect(index)}
-                styleText={isSelectedTopic(index) && styles.activeText} 
-                styleBG={isSelectedTopic(index) && styles.activeBG}   
-                name={item} />
-                </View>)}
-          </View>
+          <ChordsOfSong  ref={ref} value={Data.chords} />
           <SongLyrics lyrics={Data.lyrics}/>
         </View>
       </ScrollView>

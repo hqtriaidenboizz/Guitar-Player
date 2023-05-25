@@ -1,7 +1,7 @@
 import { StyleSheet,Text, View } from 'react-native'
 import React from 'react'
-import { DARKCOLORS } from '../constants/colors'
-import { IProps } from '../types/generalProps'
+import { DARKCOLORS } from '../../constants/colors'
+import { IProps } from '../../types/generalProps'
 interface MainContainerProps{
   children: React.ReactNode; 
   onTouchStart?: () => void;

@@ -1,14 +1,14 @@
 import {FlatList, ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import React from 'react'
 import { DARKCOLORS } from '../constants/colors'
-import SongCategories from '../components/SongCategories'
-import YourPlaylist from '../components/YourPlaylist'
+import SongCategories from '../components/SongLibrary/SongCategories'
+import YourPlaylist from '../components/SongLibrary/YourPlaylist'
 import CustomStatusBar from '../constants/StatusBar'
-import TopPopularSongs from '../components/TopPopularSongs'
-import SearchBar from '../components/SearchBar'
+import TopPopularSongs from '../components/SongLibrary/TopPopularSongs'
+import SearchBar from '../components/Search/SearchBar'
 import { useNavigation } from '@react-navigation/native'
 import { RootStackScreenProps } from '../types/navigation/types'
-import MainContainer from '../components/MainContainer'
+import MainContainer from '../components/Global/MainContainer'
 
 const Home = () => {
   const navigation = useNavigation<RootStackScreenProps<'Search'>['navigation']>()

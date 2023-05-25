@@ -1,6 +1,6 @@
 import { KeyboardAvoidingView, Platform, ScrollView, ScrollViewComponent, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { IProps } from '../types/generalProps'
+import { IProps } from '../../types/generalProps'
 
 const KeyboardAvoidWrapper :React.FC<IProps> = ({children}) => {
   return (

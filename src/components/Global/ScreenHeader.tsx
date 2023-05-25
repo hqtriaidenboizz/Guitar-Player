@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React,{useState} from 'react'
 import { Heart, NavArrowDown } from 'iconoir-react-native';
-import { DARKCOLORS } from '../constants/colors';
-import { FONTFAMILY } from '../constants/fonts';
-import { FONTSIZE } from '../constants/sizes';
+import { DARKCOLORS } from '../../constants/colors';
+import { FONTFAMILY } from '../../constants/fonts';
+import { FONTSIZE } from '../../constants/sizes';
 
 interface ScreenHeaderProps{
 	title?: string;

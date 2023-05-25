@@ -8,7 +8,7 @@ import MyTabs from './BottomTab';
 import SongDetail from '../screens/SongDetail';
 import { RootStackParamList } from '../types/navigation/types';
 import Search from '../screens/Search';
-import HeaderTitle from '../components/HeaderTitle';
+import HeaderTitle from '../components/Global/HeaderTitle';
 import { HEADERSTYLE } from '../styles/generalStyle';
 
 const RootStack = createStackNavigator<RootStackParamList>();

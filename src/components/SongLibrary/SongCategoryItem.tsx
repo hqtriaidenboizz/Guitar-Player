@@ -1,8 +1,8 @@
 import { StyleSheet,Pressable, Text, View, Image } from 'react-native'
 import React from 'react'
-import { FONTFAMILY } from '../constants/fonts'
-import { FONTSIZE } from '../constants/sizes'
-import { DARKCOLORS } from '../constants/colors'
+import { FONTFAMILY } from '../../constants/fonts'
+import { FONTSIZE } from '../../constants/sizes'
+import { DARKCOLORS } from '../../constants/colors'
 interface ISongCategoriesProps {
     id?: string,
     name?: string,
