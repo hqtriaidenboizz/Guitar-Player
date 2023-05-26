@@ -1,19 +1,19 @@
-import { View, Text } from 'react-native'
-import React,{useEffect} from 'react'
-import { Provider } from 'react-redux'
-import { store } from './src/stores/store'
-import Navigation from './src/navigation'
-import SplashScreen from 'react-native-splash-screen'
+import {View, Text} from 'react-native';
+import React, {useEffect} from 'react';
+import {Provider} from 'react-redux';
+import {store} from './src/stores/store';
+import Navigation from './src/navigation';
+import SplashScreen from 'react-native-splash-screen';
 
 const App = () => {
-  useEffect(()=> {
-    SplashScreen.hide()
-  })
+  useEffect(() => {
+    SplashScreen.hide();
+  });
   return (
-   <Provider store={store}>
-        <Navigation/>
-   </Provider>
-  )
-}
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
+  );
+};
 
-export default App
+export default App;

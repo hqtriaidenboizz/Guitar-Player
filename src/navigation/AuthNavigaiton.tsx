@@ -1,18 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
-import SignIn from '../screens/SignIn';
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
 
+import SignIn from '../screens/SignIn';
 const RootAuthStack = createStackNavigator();
 
-    const AuthNavigaiton = () => {
+const AuthNavigaiton = () => {
   return (
     <RootAuthStack.Navigator>
-        <RootAuthStack.Screen name='SignIn' component={SignIn} />
+      <RootAuthStack.Screen name="SignIn" component={SignIn} />
     </RootAuthStack.Navigator>
-  )
-}
+  );
+};
 
-export default AuthNavigaiton
+export default AuthNavigaiton;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

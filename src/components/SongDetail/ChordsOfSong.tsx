@@ -1,8 +1,16 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useState,useEffect, forwardRef, useImperativeHandle, useRef} from 'react';
+import {Permission, Image,StyleSheet, Text, View} from 'react-native';
+import React, {
+  useState,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 import CustomTitle from '../Global/CustomTitle';
 import ChordButton from '../Global/ChordButton';
 import {DARKCOLORS} from '../../constants/colors';
+import { Svg, SvgXml } from 'react-native-svg';
+import { xml } from '../../assets/SVG/Chord';
 
 interface Chordprops {
   value: string[];
@@ -11,9 +19,10 @@ interface MyComponentMethods {
   unSelect: () => void;
 }
 
-const ChordsOfSong = forwardRef<MyComponentMethods, Chordprops>((props, ref) => {
+const ChordsOfSong = forwardRef<MyComponentMethods, Chordprops>(
+  (props, ref) => {
     const [selectTopic, setSelectTopic] = useState<any>();
-    const viewRef = useRef<View>(null);
+    const chordRef = useRef<View>(null);
     const handleSeclect = (id: any) => {
       setSelectTopic(id);
     };
@@ -27,22 +36,28 @@ const ChordsOfSong = forwardRef<MyComponentMethods, Chordprops>((props, ref) => 
       unSelect,
     }));
     const getViewLocation = (id: any) => {
-      viewRef.current?.measure((x: number, y: number, pageX:number, pageY: number) => {
-          console.log("view container" + id, x, y,pageX, pageY);
-        });
-    }  
-    
+      chordRef.current?.measure(
+        (x: number, y: number, pageX: number, pageY: number) => {
+          console.log('view container', x, y ,pageX, pageY);
+        },
+      );
+    };
+
     return (
       <View>
         <CustomTitle title="Chords" />
         <View style={styles.chordsList}>
           {props.value.map((item: string, index: number) => (
-            <View ref={viewRef} onLayout={()=> getViewLocation(index)} key={index}>
+            <View
+              key={index}>
               <View
                 style={isSelectedTopic(index) ? styles.chord : styles.unshow}>
-                <Text>{item}</Text>
+                <View>
+                  <SvgXml xml={xml} width="100%" height="100%"/>
+                </View>
               </View>
               <ChordButton
+                ref={chordRef}
                 onPress={() => handleSeclect(index)}
                 styleText={isSelectedTopic(index) && styles.activeText}
                 styleBG={isSelectedTopic(index) && styles.activeBG}
@@ -80,7 +95,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     position: 'absolute',
     bottom: 70,
-    left: 20,
+    // left: 20,
   },
   unshow: {
     display: 'none',
