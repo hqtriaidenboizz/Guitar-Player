@@ -26,14 +26,16 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = props => {
         height={35}
       />
       <Text style={styles.title}>{props.title}</Text>
-      {props.iconRight && (
-        <Heart
+      {props.iconRight ? (
+
+          <Heart
           onPress={handleLoveIcon}
           color={isLove ? '#F40824' : DARKCOLORS.textColor_1}
           width={30}
           height={30}
         />
-      )}
+      ): <View style={{width: 30}}>
+      </View> }
     </View>
   );
 };

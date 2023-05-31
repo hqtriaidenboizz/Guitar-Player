@@ -5,8 +5,6 @@ import CustomTitle from '../Global/CustomTitle';
 import SongCategoryItem from './SongCategoryItem';
 import { SongCategoryData } from '../../assets/Data/FakeData';
 
-
-
 const SongCategories = () => {
   return (
     <View>
