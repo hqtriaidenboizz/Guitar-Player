@@ -3,6 +3,8 @@ import React from 'react'
 import { DARKCOLORS } from '../constants/colors'
 import MainContainer from '../components/Global/MainContainer'
 import ChordChart from '../components/Global/ChordChart'
+import ChordList from '../components/Global/ChordList'
+import { GUITARTCHORDATA } from '../assets/Data/guitarChords'
 const Data = [
   {
     "A": [
@@ -54,21 +56,7 @@ const Data = [
 const Tune = () => {
   return (
     <MainContainer>
-      <ChordChart tuning={[
-        "5",
-        "7",
-        "7",
-        "6",
-        "5",
-        "5"
-      ]} chord={[
-          "1",
-          "3",
-          "4",
-          "2",
-          "1",
-          "1"
-        ]} showTuning={true}/>
+      {/* <ChordList chords={GUITARTCHORDATA}/> */}
     </MainContainer>
   )
 }
