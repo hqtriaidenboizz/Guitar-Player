@@ -23,7 +23,6 @@ const Home = () => {
   const handleNavigate = () => {
     navigation.navigate('Search');
   };
-
   return (
     <MainContainer>
       <CustomStatusBar />

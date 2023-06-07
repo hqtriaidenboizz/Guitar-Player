@@ -1,7 +1,6 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React from 'react';
 import MainContainer from '../components/Global/MainContainer';
-import HeaderTitle from '../components/Global/HeaderTitle';
 import ScreenHeader from '../components/Global/ScreenHeader';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackScreenProps} from '../types/navigation/types';
@@ -14,7 +13,22 @@ const ChordGame = () => {
   const handleNaivgate = () => {
     navigation.goBack();
   };
-  const Data = [{}, {}, {}];
+  const Data = [{
+    status: true,
+    chordList: [{name: 'C'}, {name: 'Am'}, {name: 'Em'}, {name: 'G'}],
+    scrore: 1,
+    title: "4 Base chords"
+  }, {
+    status: true,
+    chordList: [{name: 'F'}, {name: 'Fm'}, {name: 'A'}, {name: 'Amaj7'}],
+    scrore: 0.3,
+    title: "4 Base chords"
+  }, {
+    status: false,
+    chordList: [{name: 'C'}, {name: 'Am'}, {name: 'Em'}, {name: 'G'}],
+    scrore: 0,
+    title: "4 Base chords"
+  }];
   return (
     <MainContainer>
       <ScreenHeader
@@ -27,7 +41,14 @@ const ChordGame = () => {
         data={Data}
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={() => <View style={{height: 20}} />}
-        renderItem={({item}) => <GameItem />}
+        renderItem={({item}) => (
+          <GameItem
+            status={item.status}
+            chordList={item.chordList}
+            score={item.scrore}
+            title= {item.title}
+          />
+        )}
       />
     </MainContainer>
   );

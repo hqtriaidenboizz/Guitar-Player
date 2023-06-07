@@ -27,7 +27,6 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = props => {
       />
       <Text style={styles.title}>{props.title}</Text>
       {props.iconRight ? (
-
           <Heart
           onPress={handleLoveIcon}
           color={isLove ? '#F40824' : DARKCOLORS.textColor_1}

@@ -12,6 +12,7 @@ import HeaderTitle from '../components/Global/HeaderTitle';
 import {HEADERSTYLE} from '../styles/generalStyle';
 import ChordLibrary from '../screens/ChordLibrary';
 import ChordGame from '../screens/ChordGame';
+import GameDetail from '../screens/GameDetail';
 
 const RootStack = createStackNavigator<RootStackParamList>();
 const Stack = () => {
@@ -23,6 +24,7 @@ const Stack = () => {
       <RootStack.Screen name="SongDetail" component={SongDetail} />
       <RootStack.Screen name="ChordLibrary" component={ChordLibrary} />
       <RootStack.Screen name="ChordGame" component={ChordGame} />
+      <RootStack.Screen name="GameDetail" component={GameDetail} />
       <RootStack.Screen
         options={{
           headerShown: true,

@@ -5,12 +5,28 @@ import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
 import {BlurView} from '@react-native-community/blur';
-import {Lock, NoLock} from 'iconoir-react-native';
+import {useNavigation} from '@react-navigation/native';
+import {RootStackScreenProps} from '../../types/navigation/types';
 
+interface Chord {
+  name: string;
+}
 
-const GameItem = () => {
+interface GameItemProps {
+  status: boolean;
+  score: number;
+  title: string;
+  chordList: Chord[];
+}
+
+const GameItem: React.FC<GameItemProps> = props => {
+  const navigation =
+    useNavigation<RootStackScreenProps<'ChordGame'>['navigation']>();
+  const handleNavigater = () => {
+    {props.status ? navigation.navigate('GameDetail') : null}
+  };
   return (
-    <Pressable style={styles.container}>
+    <Pressable onPress={() => handleNavigater()} style={styles.container}>
       <Progress.Circle
         borderWidth={1}
         thickness={12}
@@ -19,25 +35,27 @@ const GameItem = () => {
         animated={true}
         showsText={true}
         size={120}
-        progress={0.64}
+        progress={props.score}
       />
       <View style={styles.containerRight}>
-        <Text style={styles.title}>4 Basic chords</Text>
+        <Text style={styles.title}>{props.title}</Text>
         <View style={styles.chordList}>
-          <Text style={styles.chord}>Dm</Text>
-          <Text style={styles.chord}>F</Text>
-          <Text style={styles.chord}>C</Text>
-          <Text style={styles.chord}>C</Text>
+          {props.chordList.map((item: any, index: number) => (
+            <Text key={index} style={styles.chord}>
+              {item.name}
+            </Text>
+          ))}
         </View>
       </View>
-      <BlurView style={styles.containerUnlock}>
-        <View >
-          <Pressable style={styles.btnUnLock}>
-              <Lock color={DARKCOLORS.textColor_3} width={50} height={50} />
-            <Text>UnLock</Text>
-          </Pressable>
-        </View>
-      </BlurView>
+      {props.status ? null : (
+        <BlurView style={styles.containerUnlock}>
+          <View style={styles.containerBtn}>
+            <Pressable style={styles.btnUnLock}>
+              <Text style={styles.text}>UnLock</Text>
+            </Pressable>
+          </View>
+        </BlurView>
+      )}
     </Pressable>
   );
 };
@@ -94,10 +112,22 @@ const styles = StyleSheet.create({
   btnUnLock: {
     backgroundColor: DARKCOLORS.hightLightColor,
     borderRadius: 360,
-    display:'flex',
-    flexDirection:'row',
-    justifyContent:'center',
-    alignItems: 'center'
-
+    height: 50,
+    width: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  containerBtn: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontFamily: FONTFAMILY.medium,
+    fontSize: FONTSIZE.size_2,
+    color: DARKCOLORS.primaryColor,
   },
 });

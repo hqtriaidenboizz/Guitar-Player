@@ -13,6 +13,7 @@ export type RootStackParamList = {
   Search: undefined;
   ChordLibrary: undefined;
   ChordGame: undefined;
+  GameDetail: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
