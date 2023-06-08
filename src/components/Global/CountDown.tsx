@@ -1,22 +1,29 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState,useEffect} from 'react';
+import React, {useState,useEffect,useRef} from 'react';
 import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
 import {Timer} from 'iconoir-react-native';
 
 interface CountDownProps {
-  seconds: number;
+  initialTime: number;
 }
 const CountDown: React.FC<CountDownProps> = props => {
-  const [seconds, setSeconds] = useState<number>(props.seconds);
+  const [seconds, setSeconds] = useState<number>(props.initialTime);
+  const [isRunning,setIsRunning] = useState<boolean>(false);
+  let intervalRef = useRef<number>();
+
   useEffect(() => {
-    setTimeout(() => {
-      if(seconds >0){
-      setSeconds(seconds-1)
-      }
-    },1000)
-  }, [seconds]);
+    if (isRunning) {
+      intervalRef.current = setInterval(() => {
+        setSeconds((prevTime: number) => prevTime - 1);
+      }, 1000);
+    } else {
+      clearInterval(intervalRef.current!);
+    }
+    return () => clearInterval(intervalRef.current!);
+  }, [isRunning]);
+  
 
   return (
     <View style={styles.coundDown}>

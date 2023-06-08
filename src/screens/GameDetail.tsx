@@ -7,7 +7,7 @@ import {DARKCOLORS} from '../constants/colors';
 import {FONTFAMILY} from '../constants/fonts';
 import {FONTSIZE} from '../constants/sizes';
 import {GENERALSTLE} from '../styles/generalStyle';
-import Chord from '../components/Global/Chord';
+import Chord from '../components/Global/AnimatedChord';
 import SelectChord from './SelectChord';
 
 const GameDetail = () => {
@@ -45,9 +45,9 @@ const GameDetail = () => {
     }
   };
   const handleRestart = () => {
-    setItem(0)
-    setStep(1)
-  }
+    setItem(0);
+    setStep(1);
+  };
   return (
     <MainContainer>
       <View style={GENERALSTLE.paddingHorizontal}>
@@ -61,6 +61,8 @@ const GameDetail = () => {
           <View style={styles.container}>
             {Data.map((item: any, index: number) => (
               <Chord
+              width={220}
+              height={250}
                 key={index}
                 index={index}
                 style={[

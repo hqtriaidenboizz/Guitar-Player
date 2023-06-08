@@ -11,6 +11,7 @@ import Sound from 'react-native-sound';
 import ChordChart from '../components/Global/ChordChart';
 import {FONTFAMILY} from '../constants/fonts';
 import {FONTSIZE} from '../constants/sizes';
+import Chord from '../components/Global/Chord';
 
 const Data = [
   {
@@ -102,14 +103,7 @@ const ChordLibrary = () => {
       </View>
       <View style={styles.container}>
         <View style={styles.ChordContainer}>
-          <Text style={styles.Chordname}>Cmaj7</Text>
-          <ChordChart
-            width={220}
-            height={250}
-            tuning={['0', '0', '2', '3', '1', '0']}
-            chord={['x', '7', '6', '5', '5', 'x']}
-            showTuning={true}
-          />
+          <Chord width={220} height={250} showName={true} nameChord={Data[selectChord].name}/>
         </View>
         <View style={styles.iconSound}>
           <SoundHigh

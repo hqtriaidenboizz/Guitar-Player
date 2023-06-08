@@ -1,48 +1,39 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Animated,
-  ViewStyle,
-  StyleProp,
-} from 'react-native';
-import React, {useRef, forwardRef, useState, useEffect} from 'react';
-import ChordChart from './ChordChart';
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
 import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
+import ChordChart from './ChordChart';
+import {GUITARTCHORDATA} from '../../assets/Data/guitarChords';
 
 interface ChordProps {
+  width?: number;
+  height?: number;
   style?: any;
   index?: any;
+  nameChord: string;
+  showName?: boolean;
 }
-const Chord: React.FC<ChordProps> = props => {
-  const [chordAnim] = useState(new Animated.Value(0));
-  useEffect(() => {
-    Chordscale();
-},[]);
 
-  const Chordscale = () => {
-    Animated.timing(chordAnim, {
-      toValue: 1,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
-  };
-  const animationStyle = {
-    transform: [{scale: chordAnim}],
-  };
+const Chord: React.FC<ChordProps> = props => {
+  const chordToFind = props.nameChord;
+  const foundChord = GUITARTCHORDATA[chordToFind]?.[0];
+
   return (
-    <Animated.View style={[props.style, styles.ChordContainer, animationStyle]}>
-      <Text style={styles.Chordname}>Dm{props.index}</Text>
-      <ChordChart
-        width={220}
-        height={250}
-        tuning={['0', '0', '2', '3', '1', '0']}
-        chord={['x', '7', '6', '5', '5', 'x']}
-        showTuning={true}
-      />
-    </Animated.View>
+    <View style={styles.ChordContainer}>
+      {props.showName && (
+        <Text style={styles.Chordname}>{props.nameChord}</Text>
+      )}
+      {foundChord && (
+        <ChordChart
+          width={props.width}
+          height={props.height}
+          tuning={foundChord?.fingerings?.[0]}
+          chord={foundChord?.positions}
+          showTuning={true}
+        />
+      )}
+    </View>
   );
 };
 
@@ -50,12 +41,8 @@ export default Chord;
 
 const styles = StyleSheet.create({
   ChordContainer: {
-    width: 220,
-    height: 320,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: DARKCOLORS.hightLightColor,
-    borderRadius: 20,
   },
   Chordname: {
     fontFamily: FONTFAMILY.bold,

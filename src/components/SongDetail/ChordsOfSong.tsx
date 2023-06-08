@@ -10,6 +10,7 @@ import CustomTitle from '../Global/CustomTitle';
 import ChordButton from '../Global/ChordButton';
 import {DARKCOLORS} from '../../constants/colors';
 import ChordChart from '../Global/ChordChart';
+import Chord from '../Global/Chord';
 
 interface Chordprops {
   value: string[];
@@ -51,13 +52,7 @@ const ChordsOfSong = forwardRef<MyComponentMethods, Chordprops>(
               <View
                 style={isSelectedTopic(index) ? styles.chord : styles.unshow}>
                 <View>
-                  <ChordChart
-                    width={90}
-                    height={130}
-                    tuning={['0', '3', '2', '0', '1', '0']}
-                    chord={['x', '7', '6', '5', '5', 'x']}
-                    showTuning={true}
-                  />
+                  <Chord nameChord={item} width={90} height={130}/>
                 </View>
               </View>
               <ChordButton

@@ -1,4 +1,12 @@
-export const GUITARTCHORDATA = {
+interface ChordData {
+  positions: string[];
+  fingerings: (string[] | null)[][];
+}
+
+interface GuitarChordData {
+  [key: string]: ChordData[];
+}
+export const GUITARTCHORDATA: GuitarChordData = {
   A: [
     {
       positions: ["5", "7", "7", "6", "5", "5"],
