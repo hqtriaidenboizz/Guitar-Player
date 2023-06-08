@@ -7,7 +7,7 @@ import {DARKCOLORS} from '../constants/colors';
 import {FONTFAMILY} from '../constants/fonts';
 import {FONTSIZE} from '../constants/sizes';
 import {GENERALSTLE} from '../styles/generalStyle';
-import Chord from '../components/Global/AnimatedChord';
+import ChordAnimation from '../components/Global/AnimatedChord';
 import SelectChord from './SelectChord';
 
 const GameDetail = () => {
@@ -60,9 +60,10 @@ const GameDetail = () => {
         ) : step === 1 ? (
           <View style={styles.container}>
             {Data.map((item: any, index: number) => (
-              <Chord
-              width={220}
-              height={250}
+              <ChordAnimation
+                nameChord='Cm'
+                width={220}
+                height={250}
                 key={index}
                 index={index}
                 style={[

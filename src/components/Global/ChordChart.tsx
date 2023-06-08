@@ -13,7 +13,7 @@ interface Props {
   width?: number
   chord?: Array<string>
   showTuning?: boolean
-  tuning?: Array<string>
+  tuning?: Array<string>| any
 }
 const ChordChart: FunctionComponent<Props> = (props) => {
   let {
@@ -234,7 +234,7 @@ const ChordChart: FunctionComponent<Props> = (props) => {
 
         {// Draw tuning
           showTuning && tuning.length == numStrings &&
-          tuning.map((t, i) => {
+          tuning.map((t: any, i: any) => {
             return drawText(
               chartXPos + stringSpacing * i,
               chartYPos + chartHeight + fontSize,

@@ -11,14 +11,16 @@ import ChordChart from './ChordChart';
 import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
+import Chord from './Chord';
 
 interface ChordProps {
   width: number;
   height: number;
   style?: any;
   index?: any;
+  nameChord: string;
 }
-const Chord: React.FC<ChordProps> = props => {
+const ChordAnimation: React.FC<ChordProps> = props => {
   const [chordAnim] = useState(new Animated.Value(0));
   useEffect(() => {
     Chordscale();
@@ -36,19 +38,12 @@ const Chord: React.FC<ChordProps> = props => {
   };
   return (
     <Animated.View style={[props.style, styles.ChordContainer, animationStyle]}>
-      <Text style={styles.Chordname}>Dm{props.index}</Text>
-      <ChordChart
-        width={props.width}
-        height={props.height}
-        tuning={['0', '0', '2', '3', '1', '0']}
-        chord={['x', '7', '6', '5', '5', 'x']}
-        showTuning={true}
-      />
+     <Chord width={props.width} height={props.height} nameChord={props.nameChord} showName={true}/>
     </Animated.View>
   );
 };
 
-export default Chord;
+export default ChordAnimation;
 
 const styles = StyleSheet.create({
   ChordContainer: {

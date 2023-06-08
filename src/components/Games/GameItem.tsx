@@ -1,48 +1,46 @@
 import {StyleSheet, Text, View, Pressable} from 'react-native';
 import React from 'react';
-import * as Progress from 'react-native-progress';
 import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
 import {BlurView} from '@react-native-community/blur';
+import {AnimatedCircularProgress} from 'react-native-circular-progress';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackScreenProps} from '../../types/navigation/types';
-
-interface Chord {
-  name: string;
-}
 
 interface GameItemProps {
   status: boolean;
   score: number;
   title: string;
-  chordList: Chord[];
+  chordList: Array<string>;
 }
 
 const GameItem: React.FC<GameItemProps> = props => {
   const navigation =
     useNavigation<RootStackScreenProps<'ChordGame'>['navigation']>();
   const handleNavigater = () => {
-    {props.status ? navigation.navigate('GameDetail') : null}
+    {
+      props.status ? navigation.navigate('GameDetail') : null;
+    }
   };
   return (
     <Pressable onPress={() => handleNavigater()} style={styles.container}>
-      <Progress.Circle
-        borderWidth={1}
-        thickness={12}
-        color={DARKCOLORS.hightLightColor}
-        strokeCap="round"
-        animated={true}
-        showsText={true}
+      <AnimatedCircularProgress
         size={120}
-        progress={props.score}
-      />
+        width={15}
+        fill={props.score}
+        rotation={360}
+        tintColor={DARKCOLORS.hightLightColor}
+        onAnimationComplete={() => console.log('onAnimationComplete')}
+        backgroundColor={DARKCOLORS.primaryColor}>
+        {() => <Text style={styles.score}>{props.score}%</Text>}
+      </AnimatedCircularProgress>
       <View style={styles.containerRight}>
         <Text style={styles.title}>{props.title}</Text>
         <View style={styles.chordList}>
-          {props.chordList.map((item: any, index: number) => (
+          {props.chordList.map((item: string, index: number) => (
             <Text key={index} style={styles.chord}>
-              {item.name}
+              {item}
             </Text>
           ))}
         </View>
@@ -129,5 +127,10 @@ const styles = StyleSheet.create({
     fontFamily: FONTFAMILY.medium,
     fontSize: FONTSIZE.size_2,
     color: DARKCOLORS.primaryColor,
+  },
+  score: {
+    fontSize: FONTSIZE.size_2,
+    fontWeight: '500',
+    color: DARKCOLORS.textColor_1,
   },
 });

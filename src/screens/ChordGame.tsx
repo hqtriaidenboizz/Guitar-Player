@@ -13,22 +13,26 @@ const ChordGame = () => {
   const handleNaivgate = () => {
     navigation.goBack();
   };
-  const Data = [{
-    status: true,
-    chordList: [{name: 'C'}, {name: 'Am'}, {name: 'Em'}, {name: 'G'}],
-    scrore: 1,
-    title: "4 Base chords"
-  }, {
-    status: true,
-    chordList: [{name: 'F'}, {name: 'Fm'}, {name: 'A'}, {name: 'Amaj7'}],
-    scrore: 0.3,
-    title: "4 Base chords"
-  }, {
-    status: false,
-    chordList: [{name: 'C'}, {name: 'Am'}, {name: 'Em'}, {name: 'G'}],
-    scrore: 0,
-    title: "4 Base chords"
-  }];
+  const Data = [
+    {
+      status: true,
+      chordList: ['C', 'G', 'Em', 'Am'],
+      scrore: 50,
+      title: '4 Base chords',
+    },
+    {
+      status: true,
+      chordList: ['C', 'G', 'Em', 'Am'],
+      scrore: 20,
+      title: '4 Base chords',
+    },
+    {
+      status: false,
+      chordList: ['C', 'G', 'Em', 'Am'],
+      scrore: 0,
+      title: '4 Base chords',
+    },
+  ];
   return (
     <MainContainer>
       <ScreenHeader
@@ -46,7 +50,7 @@ const ChordGame = () => {
             status={item.status}
             chordList={item.chordList}
             score={item.scrore}
-            title= {item.title}
+            title={item.title}
           />
         )}
       />
