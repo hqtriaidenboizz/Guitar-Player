@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, Animated, Pressable} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import MainContainer from '../components/Global/MainContainer';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {RootStackScreenProps} from '../types/navigation/types';
 import {DARKCOLORS} from '../constants/colors';
 import {FONTFAMILY} from '../constants/fonts';
@@ -11,14 +11,18 @@ import ChordAnimation from '../components/Global/AnimatedChord';
 import SelectChord from './SelectChord';
 
 const GameDetail = () => {
-  const [item, setItem] = useState<number>(0);
-  const Data = [{}, {}, {}, {}];
   const [step, setStep] = useState<number>(0);
+  const [index, setIndex] = useState<number>(0);
+
   const navigation =
     useNavigation<RootStackScreenProps<'GameDetail'>['navigation']>();
   const handleGoback = () => {
     navigation.goBack();
   };
+  const route = useRoute<RootStackScreenProps<'GameDetail'>['route']>();
+  const LessonData = route.params;
+
+  const chordItem = LessonData.Lesson.chordList?.[index];
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const fadeOut = () => {
     Animated.timing(fadeAnim, {
@@ -27,6 +31,7 @@ const GameDetail = () => {
       useNativeDriver: true,
     }).start();
   };
+
   useEffect(() => {
     fadeOut();
     setTimeout(() => {
@@ -34,51 +39,52 @@ const GameDetail = () => {
     }, 2000);
   }, []);
 
-  const isSelectItem = (id: any) => {
-    return id === item;
-  };
   const handleTab = () => {
-    if (item === Data.length - 1) {
+    if (index === LessonData.Lesson.chordList.length - 1) {
       setStep(2);
     } else {
-      setItem(item + 1);
+      setIndex(index + 1);
     }
   };
+
   const handleRestart = () => {
-    setItem(0);
+    setIndex(0);
     setStep(1);
   };
+
   return (
     <MainContainer>
       <View style={GENERALSTLE.paddingHorizontal}>
         {step === 0 ? (
           <View style={styles.intro}>
             <Animated.Text style={[styles.title, {opacity: fadeAnim}]}>
-              4 Basic Chord
+              {LessonData.Lesson.title}
             </Animated.Text>
           </View>
         ) : step === 1 ? (
           <View style={styles.container}>
-            {Data.map((item: any, index: number) => (
-              <ChordAnimation
-                nameChord='Cm'
-                width={220}
-                height={250}
-                key={index}
-                index={index}
-                style={[
-                  isSelectItem(index)
-                    ? styles.activeChord
-                    : styles.unactiveChord,
-                ]}
-              />
-            ))}
+            {chordItem && (
+              <View>
+                <ChordAnimation
+                  nameChord={chordItem}
+                  width={220}
+                  height={250}
+                  key={index}
+                  index={index}
+                  style={styles.activeChord}
+                />
+              </View>
+            )}
             <Pressable onPress={handleTab} style={styles.btncontainer}>
               <Text style={styles.btnContinue}>Tab to continue</Text>
             </Pressable>
           </View>
         ) : step === 2 ? (
-          <SelectChord restart={handleRestart} goBack={handleGoback} />
+          <SelectChord
+            chordList={LessonData.Lesson.chordList}
+            restart={handleRestart}
+            goBack={handleGoback}
+          />
         ) : null}
       </View>
     </MainContainer>

@@ -7,10 +7,10 @@ import {
   StyleProp,
 } from 'react-native';
 import React, {useRef, forwardRef, useState, useEffect} from 'react';
-import ChordChart from './ChordChart';
 import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
+import Sound from 'react-native-sound';
 import Chord from './Chord';
 
 interface ChordProps {
@@ -24,8 +24,21 @@ const ChordAnimation: React.FC<ChordProps> = props => {
   const [chordAnim] = useState(new Animated.Value(0));
   useEffect(() => {
     Chordscale();
-},[]);
-
+    playSound(props.nameChord);
+  }, []);
+  const playSound = (chord: any) => {
+    const sound = new Sound(`${chord}.wav`, Sound.MAIN_BUNDLE, error => {
+      if (error) {
+        console.log('failed to load the sound', error);
+        return;
+      }
+      sound.play(success => {
+        if (success) {
+          console.log('successfully finished playing');
+        }
+      });
+    });
+  };
   const Chordscale = () => {
     Animated.timing(chordAnim, {
       toValue: 1,
@@ -36,9 +49,15 @@ const ChordAnimation: React.FC<ChordProps> = props => {
   const animationStyle = {
     transform: [{scale: chordAnim}],
   };
+
   return (
     <Animated.View style={[props.style, styles.ChordContainer, animationStyle]}>
-     <Chord width={props.width} height={props.height} nameChord={props.nameChord} showName={true}/>
+      <Chord
+        width={props.width}
+        height={props.height}
+        nameChord={props.nameChord}
+        showName={true}
+      />
     </Animated.View>
   );
 };

@@ -3,10 +3,9 @@ import {
   Text,
   View,
   Pressable,
-  Image,
   TouchableOpacity,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import {
   Pause,
   Play,
@@ -22,10 +21,12 @@ import Modal from 'react-native-modal';
 import {BlurView} from '@react-native-community/blur';
 import Chord from '../components/Global/AnimatedChord';
 import {ScreenDimensions} from '../constants/dimensions';
+import {shuffleArray} from '../utils/shuffleArray';
 
 interface SeleactChord {
   goBack: () => void;
   restart: () => void;
+  chordList: Array<string>;
 }
 interface Turn {
   id: number;
@@ -50,7 +51,7 @@ const SelectChord: React.FC<SeleactChord> = props => {
         updatedTurns[turnIndex].status = false;
       }
       return updatedTurns;
-    })
+    });
   };
 
   const handlePause = () => {
@@ -64,7 +65,10 @@ const SelectChord: React.FC<SeleactChord> = props => {
     setModalVisible(!isModalVisible);
     setIsPause(!isPause);
   };
-
+  const answers = useMemo(
+    () => shuffleArray(props.chordList),
+    [props.chordList],
+  );
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -76,11 +80,11 @@ const SelectChord: React.FC<SeleactChord> = props => {
           )}
         </Pressable>
         <Text style={styles.score}>{score}</Text>
-        <CountDown initialTime={15}/>
+        <CountDown initialTime={15} />
       </View>
       <View style={styles.GameScreen}>
         <View style={styles.ChordScreen}>
-          <Chord width={220} height={250} />
+          <Chord nameChord="C" width={220} height={250} />
           <View style={styles.listNote}>
             {turns.map((item: any, index: number) => (
               <View key={index} style={styles.containerBlurNote}>
@@ -98,18 +102,14 @@ const SelectChord: React.FC<SeleactChord> = props => {
           </View>
         </View>
         <View style={styles.keyboard}>
-          <TouchableOpacity activeOpacity={0.8} style={styles.key}>
-            <Text style={styles.Keyname}>Bm</Text>
-          </TouchableOpacity>
-          <TouchableOpacity  activeOpacity={0.8} style={styles.key}>
-            <Text style={styles.Keyname}>Am</Text>
-          </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.key}>
-            <Text style={styles.Keyname}>Bm</Text>
-          </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} style={styles.key}>
-            <Text style={styles.Keyname}>Bm</Text>
-          </TouchableOpacity>
+          {answers.map((item: any, index: number) => (
+            <TouchableOpacity
+              key={index}
+              activeOpacity={0.8}
+              style={styles.key}>
+              <Text style={styles.Keyname}>{item}</Text>
+            </TouchableOpacity>
+          ))}
         </View>
       </View>
       <Modal

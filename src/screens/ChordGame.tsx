@@ -16,21 +16,33 @@ const ChordGame = () => {
   const Data = [
     {
       status: true,
-      chordList: ['C', 'G', 'Em', 'Am'],
+      chordList: ['C', 'Em', 'Dm', 'G'],
       scrore: 50,
-      title: '4 Base chords',
+      title: 'Basic Chords',
     },
     {
       status: true,
-      chordList: ['C', 'G', 'Em', 'Am'],
+      chordList: ['A', 'E', 'Am', 'Dm'],
       scrore: 20,
-      title: '4 Base chords',
+      title: 'Basic chords',
     },
     {
       status: false,
-      chordList: ['C', 'G', 'Em', 'Am'],
+      chordList: ['F', 'Fm', 'B', 'Bm'],
       scrore: 0,
-      title: '4 Base chords',
+      title: 'Barre chords',
+    },
+    {
+      status: false,
+      chordList: ['C7', 'Cm7', 'Cmaj7', 'D7'],
+      scrore: 0,
+      title: 'Barre chords',
+    },
+    {
+      status: false,
+      chordList: ['F/C', 'Em7', 'G/B', 'D7'],
+      scrore: 0,
+      title: 'Barre chords',
     },
   ];
   return (

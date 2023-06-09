@@ -20,7 +20,7 @@ const GameItem: React.FC<GameItemProps> = props => {
     useNavigation<RootStackScreenProps<'ChordGame'>['navigation']>();
   const handleNavigater = () => {
     {
-      props.status ? navigation.navigate('GameDetail') : null;
+      props.status ? navigation.navigate('GameDetail',{Lesson: props}) : null;
     }
   };
   return (
@@ -132,5 +132,5 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.size_2,
     fontWeight: '500',
     color: DARKCOLORS.textColor_1,
-  },
+  }
 });

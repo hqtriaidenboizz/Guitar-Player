@@ -4,6 +4,7 @@ import type {
 } from '@react-navigation/native';
 import type {StackScreenProps} from '@react-navigation/stack';
 import type {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import { Lession } from '../lession';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -13,7 +14,7 @@ export type RootStackParamList = {
   Search: undefined;
   ChordLibrary: undefined;
   ChordGame: undefined;
-  GameDetail: undefined;
+  GameDetail: {Lesson: Lession};
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
