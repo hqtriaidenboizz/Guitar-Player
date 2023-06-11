@@ -1,5 +1,5 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {FlatList, StyleSheet, Text, View, LogBox} from 'react-native';
+import React, {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackScreenProps} from '../../types/navigation/types';
 import {GENERALSTLE} from '../../styles/generalStyle';
@@ -37,7 +37,9 @@ const ResultSearch = () => {
   const handleNavigate = (id: number) => {
     navigation.navigate('SongDetail', {id: id});
   };
-
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={GENERALSTLE.paddingHorizontal}>
