@@ -9,7 +9,7 @@ const SongCategories = () => {
   return (
     <View>
       <View style={GENERALSTLE.paddingHorizontal}>
-        <CustomTitle title="Categories" moreIcon={true} />
+        <CustomTitle title="Genres" moreIcon={true} />
       </View>
       <FlatList
         style={styles.flatlist}
