@@ -1,6 +1,6 @@
 import {applyMiddleware, legacy_createStore as createStore} from 'redux';
 import {composeWithDevTools} from '@redux-devtools/extension';
-import {rootReducer} from './reducers/_index';
+import rootReducer from './reducers/_index';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/_index';
 

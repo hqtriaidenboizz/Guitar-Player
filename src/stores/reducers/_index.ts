@@ -1,7 +1,11 @@
 import {combineReducers} from 'redux';
 import userReducer from './userReducer';
+import songReducer from './songReducer';
 
-export const rootReducer = combineReducers({
-  // user: userReducer,
+const rootReducer = combineReducers({
+  user: userReducer,
+  song: songReducer
 });
 export type RootState = ReturnType<typeof rootReducer>;
+
+export default rootReducer;

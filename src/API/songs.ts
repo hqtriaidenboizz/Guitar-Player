@@ -1,7 +1,7 @@
 import axiosRequest from ".";
+import { Song } from "../types/song";
 
 export const fetchSongsData = async () => {
-  console.log('chay');
   const url = `songs?select=*`;
   return await axiosRequest.get(url)
 } 

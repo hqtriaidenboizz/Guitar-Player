@@ -3,14 +3,6 @@ import {API_KEY} from '../constants/Apikey';
 
 const ROOT_URL = 'https://povqcjufmbtvlhvbgtmq.supabase.co/rest/v1/';
 
-// const axiosRequest = axios.create({
-//   baseURL: ROOT_URL,
-//   headers: {
-//     'Content-Type': 'application/json',
-//     Authorization: `Bearer ${API_KEY}`,
-//     apikey: API_KEY,
-//   },
-// });
 const axiosRequest = axios.create({
   baseURL: ROOT_URL,
 });
@@ -18,7 +10,7 @@ const axiosRequest = axios.create({
 axiosRequest.interceptors.request.use(
   config => {
     config.headers.apikey = API_KEY;
-    config.headers.Authorization= `Bearer ${API_KEY}`;
+    config.headers.Authorization = `Bearer ${API_KEY}`;
     return config;
   },
   error => {
@@ -29,8 +21,6 @@ axiosRequest.interceptors.request.use(
 
 axiosRequest.interceptors.response.use(
   response => {
-    console.log('thanh cong', response.data);
-    
     return response.data;
   },
   (error = {}) => {

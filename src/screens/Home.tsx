@@ -17,10 +17,9 @@ import SearchBar from '../components/Search/SearchBar';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackScreenProps} from '../types/navigation/types';
 import MainContainer from '../components/Global/MainContainer';
-import { fetchSongsData } from '../API/songs';
+
 
 const Home = () => {
-  fetchSongsData()
   const navigation =
     useNavigation<RootStackScreenProps<'Search'>['navigation']>();
   const handleNavigate = () => {

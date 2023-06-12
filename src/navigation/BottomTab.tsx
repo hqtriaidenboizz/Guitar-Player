@@ -6,8 +6,9 @@ import { BlurView } from '@react-native-community/blur';
 import { BottomTabData } from '../constants/bottomtab';
 import { DARKCOLORS } from '../constants/colors';
 import { HEADERSTYLE } from '../styles/generalStyle';
+import { RootTabParamList } from '../types/navigation/types';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
 function MyTabs() {
   return (

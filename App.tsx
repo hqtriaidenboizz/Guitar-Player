@@ -3,12 +3,9 @@ import {Provider} from 'react-redux';
 import {store} from './src/stores/store';
 import Navigation from './src/navigation';
 import SplashScreen from 'react-native-splash-screen';
-import { fetchSongsData } from './src/API/songs';
-
 
 const App = () => {
   useEffect(() => {
-    
     SplashScreen.hide();
   });
   return (
