@@ -15,9 +15,9 @@ import {FONTSIZE} from '../../constants/sizes';
 import {ScreenDimensions} from '../../constants/dimensions';
 
 interface ITopSongProps {
-  title: string;
-  image: string;
-  artistName: string;
+  title?: string;
+  image?: string;
+  artistName?: string;
   onPress?: () => void;
   style?: StyleProp<ViewStyle>;
   loader?: boolean;
