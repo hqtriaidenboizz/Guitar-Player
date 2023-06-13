@@ -14,14 +14,14 @@ axiosRequest.interceptors.request.use(
     return config;
   },
   error => {
-    console.log(error);
+    // console.log(error);
     return Promise.reject(error);
   },
 );
 
 axiosRequest.interceptors.response.use(
   response => {
-    return response.data;
+    return response;
   },
   (error = {}) => {
     console.log('⚠️: error', error);

@@ -7,6 +7,7 @@ export const DARKCOLORS = {
   textColor_2: '#FFFFFF',
   textColor_3: '#090909',
   textColor_4: '#BDBDBD',
+  placeholderColor: '#6A6A6A',
 };
 
 export const LIGHTCOLORS = {

@@ -6,18 +6,18 @@ import {FlatList} from 'react-native-gesture-handler';
 import TopSong from './TopSong';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackScreenProps} from '../../types/navigation/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../stores/reducers/_index';
+import topSongsHandle from '../../utils/sortTopSongs';
 
-const Data = [
-  {title: 'TheWeeknd', id: 1},
-  {title: 'Justin', id: 2},
-  {title: 'Thang(Ngot*)', id: 3},
-];
 const TopPopularSongs = () => {
+  const {pending, songs, error} = useSelector((state: RootState)=> state.song)
   const navigation =
     useNavigation<RootStackScreenProps<'MyTabs'>['navigation']>();
   const handleNavigate = (id: any) => {
     navigation.navigate('SongDetail', {id: id});
   };
+  const topSongs = topSongsHandle(songs)
   return (
     <View>
       <View style={GENERALSTLE.paddingHorizontal}>
@@ -25,10 +25,13 @@ const TopPopularSongs = () => {
       </View>
       <FlatList
         style={styles.Topsong}
-        data={Data}
+        data={pending? [...Array(3)]:topSongs}
         contentContainerStyle={styles.content}
-        renderItem={({item}) => (
-          <TopSong onPress={() => handleNavigate(item.id)} title={item.title} />
+        renderItem={({item}) => ( 
+          <TopSong onPress={() => handleNavigate(item.id)} 
+          title={item.songName}
+          image={item.image}
+          artistName={item.artistName} loader={pending}/>
         )}
         horizontal
         showsVerticalScrollIndicator={false}

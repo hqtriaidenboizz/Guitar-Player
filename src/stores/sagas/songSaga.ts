@@ -1,18 +1,24 @@
-import {call, put} from 'redux-saga/effects';
+import {all, call, put, takeLatest, takeEvery, fork} from 'redux-saga/effects';
 import {fetchSongsData} from '../../API/songs';
-import {Song} from '../../types/song';
-import {fetchSongsFailure, fetchSongsSuccess} from '../actions/songAction';
+import {
+  fetchSongsFailure,
+  fetchSongsRequest,
+  fetchSongsSuccess,
+} from '../actions/songAction';
 
-function* fetchSongSaga() {
+function* fetchSongsSaga() {
   try {
-    const response: Song[]= yield fetchSongsData();
-    console.log(response);
-    
-    yield put(
-      fetchSongsSuccess({
-        songs: response,
-      }),
-    );
+    const response = yield call(fetchSongsData);
+    yield put(fetchSongsRequest());
+    if (response && response.data) {
+      yield put(
+        fetchSongsSuccess({
+          songs: response.data,
+        }),
+      );
+    } else {
+      throw new Error('Invalid response');
+    }
   } catch (e: any) {
     yield put(
       fetchSongsFailure({
@@ -21,4 +27,7 @@ function* fetchSongSaga() {
     );
   }
 }
-export default fetchSongSaga;
+function* songSaga() {
+  yield all([fork(fetchSongsSaga)]);
+}
+export default songSaga;

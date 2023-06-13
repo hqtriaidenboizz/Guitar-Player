@@ -22,11 +22,12 @@ const songReducer = (state = initalState, action: SongsActions) => {
     case songActionTypes.FETCH_SONG_FAILURE:
       return {
         ...state,
-        songs: action.payload.error,
+        error: action.payload.error,
+        songs: [],
         pending: false,
       };
     default:
-      return state;
+      return {...state};
   }
 };
 export default songReducer;

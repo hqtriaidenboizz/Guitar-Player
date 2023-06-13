@@ -1,6 +1,6 @@
-import {all} from 'redux-saga/effects';
-import fetchSongSaga from './songSaga';
+import {all, fork} from 'redux-saga/effects';
+import songSaga from './songSaga';
+
 export default function* rootSaga() {
-  yield all([fetchSongSaga()]);
-  
+  yield all([fork(songSaga)]);
 }

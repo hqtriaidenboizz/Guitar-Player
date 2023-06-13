@@ -1,4 +1,4 @@
-import * as songActionTypes from '../stores/actions/songActionTypes';
+import { FETCH_SONG_FAILURE, FETCH_SONG_REQUEST, FETCH_SONG_SUCCESS } from "../stores/actions/songActionTypes";
 
 export interface Song {
   id: string;
@@ -7,6 +7,7 @@ export interface Song {
   chords: Array<string>;
   image: string;
   lyrics: object;
+  artistName: string;
 }
 
 export interface SongState {
@@ -24,16 +25,16 @@ export interface FetchSongsFailurePayload {
 }
 
 export interface FetchSongsRequest {
-  type: typeof songActionTypes.FETCH_SONG_REQUEST;
+  type: typeof FETCH_SONG_REQUEST;
 }
 
 export type FetchSongsSuccess = {
-  type: typeof songActionTypes.FETCH_SONG_SUCCESS;
+  type: typeof FETCH_SONG_SUCCESS;
   payload: FetchSongsSuccessPayload;
 };
 
 export type FetchSongsFailure = {
-  type: typeof songActionTypes.FETCH_SONG_FAILURE;
+  type: typeof FETCH_SONG_FAILURE;
   payload: FetchSongsFailurePayload;
 };
 
