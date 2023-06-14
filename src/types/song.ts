@@ -1,4 +1,11 @@
-import { FETCH_SONG_FAILURE, FETCH_SONG_REQUEST, FETCH_SONG_SUCCESS } from "../stores/actions/songActionTypes";
+import {
+  FETCH_SONGDETAIL_FAILURE,
+  FETCH_SONGDETAIL_REQUEST,
+  FETCH_SONGDETAIL_SUCCESS,
+  FETCH_SONG_FAILURE,
+  FETCH_SONG_REQUEST,
+  FETCH_SONG_SUCCESS,
+} from '../stores/actions/songActionTypes';
 
 export interface Song {
   id: string;
@@ -10,7 +17,7 @@ export interface Song {
   artistName: string;
 }
 
-export interface SongState {
+export interface SongsState {
   pending: boolean;
   songs: Song[];
   error: string | null;
@@ -42,3 +49,39 @@ export type SongsActions =
   | FetchSongsFailure
   | FetchSongsSuccess
   | FetchSongsRequest;
+
+// songdetail
+
+export interface SongDetailState {
+  pending: boolean;
+  songDetail: Song[];
+  error: string | null;
+}
+
+export interface FetchSongDetailSuccessPayload {
+  songDetail: [];
+}
+
+export interface FetchSongDetailFailurePayload {
+  error: string;
+}
+
+export interface FetchSongDetailRequest {
+  type: typeof FETCH_SONGDETAIL_REQUEST;
+  id: number;
+}
+
+export type FetchSongDetailSuccess = {
+  type: typeof FETCH_SONGDETAIL_SUCCESS;
+  payload: FetchSongDetailSuccessPayload;
+};
+
+export type FetchSongDetailFailure = {
+  type: typeof FETCH_SONGDETAIL_FAILURE;
+  payload: FetchSongDetailFailurePayload;
+};
+
+export type SongDetailActions =
+  | FetchSongDetailFailure
+  | FetchSongDetailSuccess
+  | FetchSongDetailRequest;

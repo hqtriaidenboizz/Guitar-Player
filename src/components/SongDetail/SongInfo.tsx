@@ -12,6 +12,7 @@ import React from 'react';
 import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
+import {ScreenDimensions} from '../../constants/dimensions';
 
 interface SongInfoProps {
   title?: string;
@@ -21,21 +22,29 @@ interface SongInfoProps {
   style?: StyleProp<ViewStyle>;
   styleSongName?: StyleProp<ViewStyle>;
   styleArtist?: StyleProp<ViewStyle>;
+  loading?: boolean;
 }
 
 const SongInfo: React.FC<SongInfoProps> = props => {
   return (
     <Pressable onPress={props.onPress} style={styles.container}>
-      <View style={styles.absolute}>
-        <Image
-          style={styles.image}
-          source={require('../../assets/images/re.jpg')}
-        />
-        <View style={styles.information}>
-          <Text style={styles.title}>Yummy</Text>
-          <Text style={styles.name}>by Justin</Text>
+      {props.loading ? (
+        <View style={styles.absolute}>
+          <View style={styles.image}></View>
+          <View style={styles.informationPlaceholdle}>
+            <Text style={styles.titlePlaceholdle}></Text>
+            <Text style={styles.namePlaceholdle}></Text>
+          </View>
         </View>
-      </View>
+      ) : (
+        <View style={styles.absolute}>
+          <Image style={styles.image} source={{uri: `${props?.image}`}} />
+          <View style={styles.information}>
+            <Text style={styles.title}>{props.title}</Text>
+            <Text style={styles.name}>by {props.artistName}</Text>
+          </View>
+        </View>
+      )}
     </Pressable>
   );
 };
@@ -58,6 +67,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '68%',
     borderRadius: 20,
+    backgroundColor: DARKCOLORS.placeholderColor,
   },
   information: {
     width: '100%',
@@ -65,10 +75,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 15,
   },
+  informationPlaceholdle: {
+    width: '100%',
+    height: '100%',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    display: 'flex',
+    gap: 10,
+  },
   title: {
     fontFamily: FONTFAMILY.bold,
     fontSize: 35,
     color: DARKCOLORS.textColor_2,
+  },
+  titlePlaceholdle: {
+    backgroundColor: DARKCOLORS.placeholderColor,
+    width: '70%',
+    height: 40,
+    borderRadius: ScreenDimensions.ScreenWidth,
+  },
+  namePlaceholdle: {
+    backgroundColor: DARKCOLORS.placeholderColor,
+    width: '50%',
+    height: 30,
+    borderRadius: ScreenDimensions.ScreenWidth,
   },
   name: {
     fontFamily: FONTFAMILY.medium,

@@ -13,7 +13,6 @@ import SelectChord from './SelectChord';
 const GameDetail = () => {
   const [step, setStep] = useState<number>(0);
   const [index, setIndex] = useState<number>(0);
-
   const navigation =
     useNavigation<RootStackScreenProps<'GameDetail'>['navigation']>();
   const handleGoback = () => {

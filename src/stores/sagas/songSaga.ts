@@ -5,29 +5,26 @@ import {
   fetchSongsRequest,
   fetchSongsSuccess,
 } from '../actions/songAction';
+import {FETCH_SONG_REQUEST} from '../actions/songActionTypes';
+import {AxiosResponse} from 'axios';
 
 function* fetchSongsSaga() {
   try {
-    const response = yield call(fetchSongsData);
-    yield put(fetchSongsRequest());
-    if (response && response.data) {
-      yield put(
-        fetchSongsSuccess({
-          songs: response.data,
-        }),
-      );
-    } else {
-      throw new Error('Invalid response');
-    }
-  } catch (e: any) {
+    const response: AxiosResponse = yield call(fetchSongsData);
+    yield put(
+      fetchSongsSuccess({
+        songs: response.data,
+      }),
+    );
+  } catch (error: any) {
     yield put(
       fetchSongsFailure({
-        error: e.message,
+        error: error.message,
       }),
     );
   }
 }
 function* songSaga() {
-  yield all([fork(fetchSongsSaga)]);
+  yield all([takeEvery(FETCH_SONG_REQUEST, fetchSongsSaga)]);
 }
 export default songSaga;

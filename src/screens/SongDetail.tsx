@@ -10,18 +10,29 @@ import SongInfo from '../components/SongDetail/SongInfo';
 import {GENERALSTLE} from '../styles/generalStyle';
 import SongLyrics from '../components/SongDetail/SongLyrics';
 import ChordsOfSong from '../components/SongDetail/ChordsOfSong';
-import { SongData } from '../assets/Data/FakeData';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchSongDetailRequest} from '../stores/actions/songAction';
+import {RootState} from '../stores/reducers/_index';
+import {Song} from '../types/song';
+import {SongData} from '../assets/Data/FakeData';
 
 const SongDetail = () => {
+  const {songDetail, pending, error} = useSelector(
+    (state: RootState) => state.songDetail,
+  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchSongDetailRequest(id));
+  }, []);
+  const ref = useRef<any>(null);
   const navigation =
     useNavigation<RootStackScreenProps<'SongDetail'>['navigation']>();
   const route = useRoute<RootStackScreenProps<'SongDetail'>['route']>();
-  const id = route.params;
+  const id = route.params.id;
   const handleNavigate = () => {
     navigation.goBack();
   };
-  const ref = useRef<any>(null);
-
+  const song: Song = songDetail[0];
   return (
     <MainContainer
       onTouchStart={() => {
@@ -29,11 +40,22 @@ const SongDetail = () => {
       }}>
       <ScreenHeader onPress={handleNavigate} iconRight={true} />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <SongInfo style={styles.songItem} />
-        <View style={[GENERALSTLE.paddingHorizontal, styles.chords]}>
-          <ChordsOfSong ref={ref} value={SongData.chords} />
-          <SongLyrics lyrics={SongData.lyrics} />
-        </View>
+        {pending ? (
+          <SongInfo loading={pending} />
+        ) : (
+          <SongInfo
+            image={song?.image}
+            title={song?.songName}
+            artistName={song?.artistName}
+            style={styles?.songItem}
+          />
+        )}
+        {pending ? null : (
+          <View style={[GENERALSTLE.paddingHorizontal, styles.chords]}>
+            <ChordsOfSong ref={ref} value={song?.chords} />
+            <SongLyrics lyrics={SongData.lyrics} />
+          </View>
+        )}
       </ScrollView>
     </MainContainer>
   );

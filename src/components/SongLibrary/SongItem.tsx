@@ -6,7 +6,7 @@ import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
 
 interface ISongItemProps {
-  id?: string;
+  id?: number;
   image?: string;
   artistName?: string;
   songName?: string;

@@ -4,12 +4,15 @@ import {DARKCOLORS} from '../constants/colors';
 import CustomStatusBar from '../constants/StatusBar';
 import SearchBar from '../components/Search/SearchBar';
 import SearchTopics from '../components/Search/SearchTopics';
-import CustomTitle from '../components/Global/CustomTitle';
-import {GENERALSTLE} from '../styles/generalStyle';
 import ResultSearch from '../components/Search/ResultSearch';
 import MainContainer from '../components/Global/MainContainer';
+import { useSelector } from 'react-redux';
+import { RootState } from '../stores/reducers/_index';
 
 const Search = () => {
+  const {songs} = useSelector((state: RootState)=>
+  state.song
+  )
   return (
     <MainContainer>
       <CustomStatusBar />
@@ -17,7 +20,7 @@ const Search = () => {
       <SearchTopics />
       <ScrollView style={styles.container}>
         <View style={styles.resultContainer}>
-          <ResultSearch />
+          <ResultSearch data={songs} />
         </View>
       </ScrollView>
     </MainContainer>

@@ -6,13 +6,12 @@ import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
 
 interface ChordLyric {
-  chord: string;
-  lyric: string;
+  chord?: string;
+  lyric?: string;
 }
 interface LyricsData {}
 
 const SongLyrics: React.FC<{lyrics: LyricsData}> = ({lyrics}) => {
-
   return (
     <View>
       {Object.entries(lyrics).map(([sectionName, lines], index) => (

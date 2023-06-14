@@ -1,25 +1,24 @@
-import {SongState, SongsActions} from '../../types/song';
-import * as songActionTypes from '../actions/songActionTypes';
+import {SongsState, SongsActions} from '../../types/song';
 
-const initalState: SongState = {
+const initalState: SongsState = {
   pending: false,
   songs: [],
   error: null,
 };
 const songReducer = (state = initalState, action: SongsActions) => {
   switch (action.type) {
-    case songActionTypes.FETCH_SONG_REQUEST:
+    case 'FETCH_SONG_REQUEST':
       return {
         ...state,
         pending: true,
       };
-    case songActionTypes.FETCH_SONG_SUCCESS:
+    case 'FETCH_SONG_SUCCESS':
       return {
         ...state,
         songs: action.payload.songs,
         pending: false,
       };
-    case songActionTypes.FETCH_SONG_FAILURE:
+    case 'FETCH_SONG_FAILURE':
       return {
         ...state,
         error: action.payload.error,

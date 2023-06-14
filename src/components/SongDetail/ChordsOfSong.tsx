@@ -13,7 +13,7 @@ import ChordChart from '../Global/ChordChart';
 import Chord from '../Global/Chord';
 
 interface Chordprops {
-  value: string[];
+  value?: string[];
 }
 interface MyComponentMethods {
   unSelect: () => void;
@@ -47,7 +47,7 @@ const ChordsOfSong = forwardRef<MyComponentMethods, Chordprops>(
       <View>
         <CustomTitle title="Chords" />
         <View style={styles.chordsList}>
-          {props.value.map((item: string, index: number) => (
+          {props.value?.map((item: string, index: number) => (
             <View key={index}>
               <View
                 style={isSelectedTopic(index) ? styles.chord : styles.unshow}>

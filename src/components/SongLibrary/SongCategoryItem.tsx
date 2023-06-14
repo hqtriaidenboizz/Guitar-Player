@@ -3,20 +3,28 @@ import React from 'react';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
 import {DARKCOLORS} from '../../constants/colors';
+import { ScreenDimensions } from '../../constants/dimensions';
 interface ISongCategoriesProps {
   id?: string;
   name?: string;
   image?: string;
   color?: string;
+  loading?: boolean;
 }
 
 const SongCategoryItem: React.FC<ISongCategoriesProps> = props => {
   return (
     <Pressable style={styles.container}>
-      <Image style={styles.image} source={{uri: `${props.image}`}} />
-      <View style={[styles.containerTitle, {backgroundColor: props.color}]}>
-        <Text style={[styles.title]}>{props.name}</Text>
-      </View>
+      {props.loading ? (
+        <View style={styles.containerPlaceholder}></View>
+      ) : (
+        <>
+          <Image style={styles.image} source={{uri: `${props.image}`}} />
+          <View style={[styles.containerTitle, {backgroundColor: props.color}]}>
+            <Text style={[styles.title]}>{props.name}</Text>
+          </View>
+        </>
+      )}
     </Pressable>
   );
 };
@@ -30,6 +38,12 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     overflow: 'hidden',
     marginHorizontal: 10,
+  },
+  containerPlaceholder:{
+    width: '100%',
+    height: '100%',
+    backgroundColor:DARKCOLORS.sencentColor,
+    borderRadius: ScreenDimensions.ScreenWidth
   },
   image: {
     width: '100%',
