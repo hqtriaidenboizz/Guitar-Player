@@ -1,11 +1,12 @@
 import {StyleSheet, Text, View, Pressable} from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+
 import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
 import {BlurView} from '@react-native-community/blur';
 import {AnimatedCircularProgress} from 'react-native-circular-progress';
-import {useNavigation} from '@react-navigation/native';
 import {RootStackScreenProps} from '../../types/navigation/types';
 
 interface GameItemProps {
@@ -16,13 +17,16 @@ interface GameItemProps {
 }
 
 const GameItem: React.FC<GameItemProps> = props => {
+
   const navigation =
     useNavigation<RootStackScreenProps<'ChordGame'>['navigation']>();
+    
   const handleNavigater = () => {
     {
-      props.status ? navigation.navigate('GameDetail',{Lesson: props}) : null;
+      props.status ? navigation.navigate('GameDetail', {Lesson: props}) : null;
     }
   };
+
   return (
     <Pressable onPress={() => handleNavigater()} style={styles.container}>
       <AnimatedCircularProgress
@@ -132,5 +136,5 @@ const styles = StyleSheet.create({
     fontSize: FONTSIZE.size_2,
     fontWeight: '500',
     color: DARKCOLORS.textColor_1,
-  }
+  },
 });

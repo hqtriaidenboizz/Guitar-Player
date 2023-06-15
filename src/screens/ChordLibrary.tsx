@@ -68,12 +68,14 @@ const ChordLibrary = () => {
         console.log('failed to load the sound', error);
         return;
       }
-      sound.play(success => {
+      sound.setVolume(0.5).play(success => {
         if (success) {
           console.log('successfully finished playing');
         }
       });
     });
+    
+    
   };
 
   return (

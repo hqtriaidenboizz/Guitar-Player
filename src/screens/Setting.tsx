@@ -1,45 +1,124 @@
-import {Image, StyleSheet, Text, View, ImageBackground} from 'react-native';
-import React from 'react';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+  Pressable,
+  ScrollView,
+} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import Slider from '@react-native-community/slider';
 import MainContainer from '../components/Global/MainContainer';
 import {GENERALSTLE} from '../styles/generalStyle';
 import {ScreenDimensions} from '../constants/dimensions';
 import {DARKCOLORS} from '../constants/colors';
 import {FONTFAMILY} from '../constants/fonts';
 import {FONTSIZE} from '../constants/sizes';
-
-const Data = [{}];
+import {
+  HelpCircle,
+  LogOut,
+  SoundLow,
+  NavArrowRight,
+} from 'iconoir-react-native';
+import {SettingItemData} from '../constants/settingItem';
+import setVolumeInAsyncStorage from '../utils/setInAsyncStore';
+import AsyncStorage from '@react-native-async-storage/async-storage/lib/typescript/AsyncStorage';
+import {getValueFromAsyncStorage} from '../utils/getValueAsyncStore';
 const Setting = () => {
+  const [volume, setVolume] = useState<any>(0);
+
+  const handleGetVolume = (value: number) => {
+    setVolume(value);
+    setVolumeInAsyncStorage('volume', value);
+  };
+  console.log('volume',volume);
+  useEffect(() => {
+   const value = getValueFromAsyncStorage('volume')
+   setVolume(Number(value))
+  },[]);
+
   return (
     <MainContainer>
-      <View style={GENERALSTLE.paddingHorizontal}>
-        <ImageBackground
-          blurRadius={5}
-          resizeMode="cover"
-          source={{
-            uri: 'https://cafefcdn.com/thumb_w/640/203337114487263232/2023/3/9/photo1678366776583-16783667766431882646483.jpg',
-          }}
-          style={styles.InfoAccount}>
-          <Image
-            style={styles.avatar}
+      <ScrollView>
+        <View style={GENERALSTLE.paddingHorizontal}>
+          <ImageBackground
+            blurRadius={5}
+            resizeMode="cover"
             source={{
               uri: 'https://cafefcdn.com/thumb_w/640/203337114487263232/2023/3/9/photo1678366776583-16783667766431882646483.jpg',
             }}
-          />
-          <Text style={styles.name}>Alexander-Arnold</Text>
-        </ImageBackground>
-        <View style={styles.settings}>
-          <View style={styles.setting}>
-            <View style={styles.container}>
-              <Text style={styles.title}>Themes</Text>
+            style={styles.InfoAccount}>
+            <Image
+              style={styles.avatar}
+              source={{
+                uri: 'https://cafefcdn.com/thumb_w/640/203337114487263232/2023/3/9/photo1678366776583-16783667766431882646483.jpg',
+              }}
+            />
+            <Text style={styles.name}>Alexander-Arnold</Text>
+          </ImageBackground>
+          <View style={styles.settings}>
+            <View style={styles.setting}>
+              <View style={styles.container}>
+                <Text style={styles.title}>Themes</Text>
+                <View style={styles.languagse}>
+                  <Pressable style={styles.languagseItem}>
+                    <Text style={styles.languagseText}>Dark theme</Text>
+                  </Pressable>
+                  <Pressable style={styles.languagseItem}>
+                    <Text style={styles.languagseText}>Light theme</Text>
+                  </Pressable>
+                </View>
+              </View>
+            </View>
+            <View style={styles.setting}>
+              <View style={styles.container}>
+                <Text style={styles.title}>Languages</Text>
+                <View style={styles.languagse}>
+                  <Pressable style={styles.languagseItem}>
+                    <Text style={styles.languagseText}>English</Text>
+                  </Pressable>
+                  <Pressable style={styles.languagseItem}>
+                    <Text style={styles.languagseText}>Vietnamese</Text>
+                  </Pressable>
+                </View>
+              </View>
             </View>
           </View>
-          <View style={styles.setting}>
-            <View style={styles.container}>
-              <Text style={styles.title}>Languages</Text>
-            </View>
+          <View style={styles.voulum}>
+            <SoundLow
+              color={DARKCOLORS.hightLightColor}
+              width={30}
+              height={30}
+            />
+            <Slider
+              // value={volume}
+              minimumValue={0}
+              onValueChange={value => handleGetVolume(value)}
+              style={styles.Slider}
+              thumbTintColor={DARKCOLORS.hightLightColor}
+              maximumValue={1}
+              minimumTrackTintColor={DARKCOLORS.hightLightColor}
+            />
           </View>
+          <View style={styles.settingBottom}>
+            {SettingItemData.map((item: any, index: number) => (
+              <Pressable key={index} style={styles.settingItem}>
+                <View style={styles.settingItemRight}>
+                  <View style={styles.icon}>{item.icon}</View>
+                  <Text>{item.title}</Text>
+                </View>
+                <NavArrowRight
+                  color={DARKCOLORS.iconColor}
+                  width={30}
+                  height={30}
+                />
+              </Pressable>
+            ))}
+          </View>
+          <View></View>
         </View>
-      </View>
+      </ScrollView>
     </MainContainer>
   );
 };
@@ -47,14 +126,22 @@ const Setting = () => {
 export default Setting;
 
 const styles = StyleSheet.create({
+  icon: {
+    padding: 10,
+    borderRadius: ScreenDimensions.ScreenWidth,
+    backgroundColor: DARKCOLORS.hightLightColor,
+  },
   InfoAccount: {
     marginVertical: 20,
     backgroundColor: DARKCOLORS.hightLightColor,
-    height: ScreenDimensions.ScreenHeight / 2.5,
+    height: ScreenDimensions.ScreenHeight / 5,
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    borderRadius: 20,
+    paddingHorizontal: 20,
+    gap: 20,
+    borderRadius: 15,
     overflow: 'hidden',
   },
   avatar: {
@@ -102,14 +189,13 @@ const styles = StyleSheet.create({
     backgroundColor: DARKCOLORS.sencentColor,
     borderRadius: 20,
     width: (ScreenDimensions.ScreenWidth - 20 - 30) / 2,
-    height: (ScreenDimensions.ScreenHeight - 300) / 2,
-    padding: 15
+    height: (ScreenDimensions.ScreenHeight - 300) / 3.3,
+    padding: 15,
   },
   container: {
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    flexDirection: 'row',
   },
   title: {
     paddingHorizontal: 10,
@@ -121,4 +207,49 @@ const styles = StyleSheet.create({
     backgroundColor: DARKCOLORS.hightLightColor,
     borderRadius: ScreenDimensions.ScreenWidth,
   },
+  languagse: {
+    width: '100%',
+    paddingVertical: 10,
+    display: 'flex',
+    gap: 10,
+    alignItems: 'flex-start',
+  },
+  languagseText: {
+    fontFamily: FONTFAMILY.regular,
+    fontSize: FONTSIZE.size_3,
+  },
+  languagseItem: {},
+  settingBottom: {
+    marginVertical: 20,
+    display: 'flex',
+    gap: 10,
+  },
+  settingItem: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  settingItemRight: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  voulum: {
+    marginTop: 20,
+    backgroundColor: DARKCOLORS.sencentColor,
+    height: 50,
+    width: '100%',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    display: 'flex',
+    // gap: 10,
+    alignItems: 'center',
+    borderRadius: 20,
+  },
+  Slider: {
+    width: '80%',
+  },
+  voulumText: {},
 });

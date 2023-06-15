@@ -7,6 +7,7 @@ import {
   StyleProp,
 } from 'react-native';
 import React, {useRef, forwardRef, useState, useEffect} from 'react';
+
 import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
@@ -20,13 +21,16 @@ interface ChordProps {
   index?: any;
   nameChord: string;
 }
+
 const ChordAnimation: React.FC<ChordProps> = props => {
+
   const [chordAnim] = useState(new Animated.Value(0));
   useEffect(() => {
     Chordscale();
     playSound(props.nameChord);
   }, []);
-  const playSound = (chord: any) => {
+
+  const playSound = (chord: string) => {
     const sound = new Sound(`${chord}.wav`, Sound.MAIN_BUNDLE, error => {
       if (error) {
         console.log('failed to load the sound', error);
@@ -39,6 +43,7 @@ const ChordAnimation: React.FC<ChordProps> = props => {
       });
     });
   };
+
   const Chordscale = () => {
     Animated.timing(chordAnim, {
       toValue: 1,
@@ -46,6 +51,7 @@ const ChordAnimation: React.FC<ChordProps> = props => {
       useNativeDriver: true,
     }).start();
   };
+  
   const animationStyle = {
     transform: [{scale: chordAnim}],
   };

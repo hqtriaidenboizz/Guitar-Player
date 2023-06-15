@@ -14,6 +14,7 @@ import React, {
   useImperativeHandle,
   useRef,
 } from 'react';
+
 import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
@@ -26,7 +27,9 @@ interface ChordButtonProps {
   id?: any;
   onLayout?: () => void;
 }
+
 const ChordButton = forwardRef<View, ChordButtonProps>((props, ref) => {
+  
   return (
     <View
       ref={ref}

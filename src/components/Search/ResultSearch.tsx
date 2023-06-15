@@ -18,7 +18,7 @@ const ResultSearch: React.FC<ResultSearchProps> = props => {
   const handleNavigate = (id: any) => {
     navigation.navigate('SongDetail', {id: id});
   };
-  
+
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   }, []);
@@ -32,7 +32,7 @@ const ResultSearch: React.FC<ResultSearchProps> = props => {
         style={[GENERALSTLE.paddingHorizontal]}
         showsVerticalScrollIndicator={false}
         data={props.data}
-        renderItem={({item}) => (
+        renderItem={({item}) => ( 
           <SongItem
             onPress={() => handleNavigate(item.id)}
             image={item.image}

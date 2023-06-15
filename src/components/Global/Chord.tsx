@@ -1,5 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+
 import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
@@ -16,6 +17,7 @@ interface ChordProps {
 }
 
 const Chord: React.FC<ChordProps> = props => {
+  
   const chordToFind = props.nameChord;
   const foundChord = GUITARTCHORDATA[chordToFind]?.[0];
 

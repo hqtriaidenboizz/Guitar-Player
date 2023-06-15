@@ -12,6 +12,7 @@ import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
 
 interface ICustomInputProps {
+  text?: string;
   onChangeText: (text: string) => void;
   placeholder: string;
   secureText?: boolean;
@@ -28,6 +29,7 @@ const CustomInput: React.FC<ICustomInputProps> = props => {
   return (
     <View style={[styles.container, props.style]}>
       <TextInput
+        value={props.text}
         showSoftInputOnFocus={props.showSoftInputOnFocus}
         autoFocus={props.autoFocus}
         onFocus={props.onFocus}

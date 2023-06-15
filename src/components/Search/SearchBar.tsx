@@ -5,7 +5,7 @@ import {
   View,
   Pressable,
 } from 'react-native';
-import React from 'react';
+import React,{useState} from 'react';
 import {GENERALSTLE} from '../../styles/generalStyle';
 import {RefreshDouble} from 'iconoir-react-native';
 import {DARKCOLORS} from '../../constants/colors';
@@ -14,6 +14,9 @@ import CustomInput from '../Global/CustomInput';
 interface SearchBarProps {
   onFocus?: () => void;
   autoFocus?: boolean;
+  value?:string; 
+  onPress?: () => void;
+  onChangeText: (text: string) => void;
   showSoftInputOnFocus?: boolean;
 }
 const SearchBar: React.FC<SearchBarProps> = props => {
@@ -24,7 +27,8 @@ const SearchBar: React.FC<SearchBarProps> = props => {
           showSoftInputOnFocus={props.showSoftInputOnFocus}
           autoFocus={props.autoFocus}
           onFocus={props.onFocus}
-          onChangeText={() => {}}
+          text={props.value}
+          onChangeText={props.onChangeText}
           style={styles.inputStyle}
           placeholder="Search"
         />
@@ -34,6 +38,7 @@ const SearchBar: React.FC<SearchBarProps> = props => {
           color={DARKCOLORS.iconColor}
           strokeWidth={1.5}
           width={35}
+          onPress={props.onPress}
           height={35}
         />
       </TouchableHighlight>
