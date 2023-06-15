@@ -23,20 +23,23 @@ import {
 } from 'iconoir-react-native';
 import {SettingItemData} from '../constants/settingItem';
 import setVolumeInAsyncStorage from '../utils/setInAsyncStore';
-import AsyncStorage from '@react-native-async-storage/async-storage/lib/typescript/AsyncStorage';
 import {getValueFromAsyncStorage} from '../utils/getValueAsyncStore';
 const Setting = () => {
-  const [volume, setVolume] = useState<any>(0);
-
-  const handleGetVolume = (value: number) => {
+  const [volume, setVolume] = useState<number>(0);
+  const handleGetVolume = async (value: number) => {
     setVolume(value);
-    setVolumeInAsyncStorage('volume', value);
+    await setVolumeInAsyncStorage('volume', value);
   };
-  console.log('volume',volume);
+  const getVolumeData = async () => {
+    const volume = await getValueFromAsyncStorage('volume');
+    if (volume) {
+      setVolume(volume);
+    }
+  };
   useEffect(() => {
-   const value = getValueFromAsyncStorage('volume')
-   setVolume(Number(value))
-  },[]);
+    getVolumeData();
+  }, []);
+  console.log(volume);
 
   return (
     <MainContainer>
@@ -63,10 +66,11 @@ const Setting = () => {
                 <Text style={styles.title}>Themes</Text>
                 <View style={styles.languagse}>
                   <Pressable style={styles.languagseItem}>
-                    <Text style={styles.languagseText}>Dark theme</Text>
+                    <View style={styles.active}></View>
+                    <Text style={styles.itemText}>Dark theme</Text>
                   </Pressable>
                   <Pressable style={styles.languagseItem}>
-                    <Text style={styles.languagseText}>Light theme</Text>
+                    <Text style={styles.itemText}>Light theme</Text>
                   </Pressable>
                 </View>
               </View>
@@ -76,10 +80,12 @@ const Setting = () => {
                 <Text style={styles.title}>Languages</Text>
                 <View style={styles.languagse}>
                   <Pressable style={styles.languagseItem}>
-                    <Text style={styles.languagseText}>English</Text>
+                    <View style={styles.active}></View>
+                    <Text style={styles.itemText}>English</Text>
+
                   </Pressable>
                   <Pressable style={styles.languagseItem}>
-                    <Text style={styles.languagseText}>Vietnamese</Text>
+                    <Text style={styles.itemText}>Vietnamese</Text>
                   </Pressable>
                 </View>
               </View>
@@ -92,7 +98,7 @@ const Setting = () => {
               height={30}
             />
             <Slider
-              // value={volume}
+              value={volume}
               minimumValue={0}
               onValueChange={value => handleGetVolume(value)}
               style={styles.Slider}
@@ -106,7 +112,7 @@ const Setting = () => {
               <Pressable key={index} style={styles.settingItem}>
                 <View style={styles.settingItemRight}>
                   <View style={styles.icon}>{item.icon}</View>
-                  <Text>{item.title}</Text>
+                  <Text style={styles.itemText}>{item.title}</Text>
                 </View>
                 <NavArrowRight
                   color={DARKCOLORS.iconColor}
@@ -129,12 +135,12 @@ const styles = StyleSheet.create({
   icon: {
     padding: 10,
     borderRadius: ScreenDimensions.ScreenWidth,
-    backgroundColor: DARKCOLORS.hightLightColor,
+    backgroundColor: DARKCOLORS.sencentColor,
   },
   InfoAccount: {
     marginVertical: 20,
     backgroundColor: DARKCOLORS.hightLightColor,
-    height: ScreenDimensions.ScreenHeight / 5,
+    height: ScreenDimensions.ScreenHeight / 5.5,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -214,11 +220,24 @@ const styles = StyleSheet.create({
     gap: 10,
     alignItems: 'flex-start',
   },
-  languagseText: {
+  itemText: {
     fontFamily: FONTFAMILY.regular,
     fontSize: FONTSIZE.size_3,
+    color: DARKCOLORS.textColor_1,
   },
-  languagseItem: {},
+  languagseItem: {
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    gap: 10
+    
+  },
+  active:{
+    width: 15,
+    height: 15,
+    borderRadius: ScreenDimensions.ScreenWidth,
+    backgroundColor: DARKCOLORS.hightLightColor
+  },
   settingBottom: {
     marginVertical: 20,
     display: 'flex',

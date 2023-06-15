@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, FlatList} from 'react-native';
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState,useEffect} from 'react';
 import MainContainer from '../components/Global/MainContainer';
 import ScreenHeader from '../components/Global/ScreenHeader';
 import {useNavigation} from '@react-navigation/native';
@@ -12,6 +12,7 @@ import ChordChart from '../components/Global/ChordChart';
 import {FONTFAMILY} from '../constants/fonts';
 import {FONTSIZE} from '../constants/sizes';
 import Chord from '../components/Global/Chord';
+import { getValueFromAsyncStorage } from '../utils/getValueAsyncStore';
 
 const Data = [
   {
@@ -45,6 +46,7 @@ const Data = [
 ];
 const ChordLibrary = () => {
   const [selectChord, setSelectChord] = useState<any>(0);
+  const [volume, setVolume] = useState<number>(0)
   const FlastlistRef = useRef<any>(null);
   const isSelectChord = (id: any) => {
     return id === selectChord;
@@ -62,20 +64,29 @@ const ChordLibrary = () => {
     });
     setSelectChord(index);
   };
+  const getVolumeData = async () => {
+    const volume = await getValueFromAsyncStorage('volume')
+    if(volume) {
+      setVolume(volume)
+    }
+   }
+  useEffect(() => {
+    getVolumeData()
+  },[]);
+
+  
   const playSound = (chord: any) => {
     const sound = new Sound(`${chord}.wav`, Sound.MAIN_BUNDLE, error => {
       if (error) {
         console.log('failed to load the sound', error);
         return;
       }
-      sound.setVolume(0.5).play(success => {
+      sound.setVolume(volume).play(success => {
         if (success) {
           console.log('successfully finished playing');
         }
       });
     });
-    
-    
   };
 
   return (

@@ -13,6 +13,7 @@ import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
 import Sound from 'react-native-sound';
 import Chord from './Chord';
+import {getValueFromAsyncStorage} from '../../utils/getValueAsyncStore';
 
 interface ChordProps {
   width: number;
@@ -23,11 +24,15 @@ interface ChordProps {
 }
 
 const ChordAnimation: React.FC<ChordProps> = props => {
-
   const [chordAnim] = useState(new Animated.Value(0));
+  const [volume, setVolume] = useState<number>(0);
   useEffect(() => {
     Chordscale();
     playSound(props.nameChord);
+  }, []);
+
+  useEffect(() => {
+    getVolumeData();
   }, []);
 
   const playSound = (chord: string) => {
@@ -36,12 +41,18 @@ const ChordAnimation: React.FC<ChordProps> = props => {
         console.log('failed to load the sound', error);
         return;
       }
-      sound.play(success => {
+      sound.setVolume(volume).play(success => {
         if (success) {
           console.log('successfully finished playing');
         }
       });
     });
+  };
+  const getVolumeData = async () => {
+    const volume = await getValueFromAsyncStorage('volume');
+    if (volume) {
+      setVolume(volume);
+    }
   };
 
   const Chordscale = () => {
@@ -51,7 +62,7 @@ const ChordAnimation: React.FC<ChordProps> = props => {
       useNativeDriver: true,
     }).start();
   };
-  
+
   const animationStyle = {
     transform: [{scale: chordAnim}],
   };
