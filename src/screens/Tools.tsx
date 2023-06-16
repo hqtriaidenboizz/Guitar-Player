@@ -46,6 +46,5 @@ export default Tools;
 
 const styles = StyleSheet.create({
   content: {
-    paddingBottom: 120,
   },
 });

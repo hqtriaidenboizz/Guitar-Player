@@ -20,6 +20,8 @@ import {
   LogOut,
   SoundLow,
   NavArrowRight,
+  SoundHigh,
+  SoundOff,
 } from 'iconoir-react-native';
 import {SettingItemData} from '../constants/settingItem';
 import setVolumeInAsyncStorage from '../utils/setInAsyncStore';
@@ -82,7 +84,6 @@ const Setting = () => {
                   <Pressable style={styles.languagseItem}>
                     <View style={styles.active}></View>
                     <Text style={styles.itemText}>English</Text>
-
                   </Pressable>
                   <Pressable style={styles.languagseItem}>
                     <Text style={styles.itemText}>Vietnamese</Text>
@@ -92,11 +93,25 @@ const Setting = () => {
             </View>
           </View>
           <View style={styles.voulum}>
-            <SoundLow
-              color={DARKCOLORS.hightLightColor}
-              width={30}
-              height={30}
-            />
+            {volume >= 0.7 ? (
+              <SoundHigh
+                color={DARKCOLORS.hightLightColor}
+                width={30}
+                height={30}
+              />
+            ) : volume >= 0.5 || volume >= 0.01 ? (
+              <SoundLow
+                color={DARKCOLORS.hightLightColor}
+                width={30}
+                height={30}
+              />
+            ) : (
+              <SoundOff
+                color={DARKCOLORS.hightLightColor}
+                width={30}
+                height={30}
+              />
+            )}
             <Slider
               value={volume}
               minimumValue={0}
@@ -226,17 +241,16 @@ const styles = StyleSheet.create({
     color: DARKCOLORS.textColor_1,
   },
   languagseItem: {
-    display:'flex',
-    flexDirection:'row',
-    alignItems:'center',
-    gap: 10
-    
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
   },
-  active:{
+  active: {
     width: 15,
     height: 15,
     borderRadius: ScreenDimensions.ScreenWidth,
-    backgroundColor: DARKCOLORS.hightLightColor
+    backgroundColor: DARKCOLORS.hightLightColor,
   },
   settingBottom: {
     marginVertical: 20,
