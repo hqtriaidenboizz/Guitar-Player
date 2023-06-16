@@ -1,50 +1,48 @@
-import {
-  Animated,
-  StyleProp,
-  ViewStyle,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Pressable,
-} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
+import {DARKCOLORS} from '../../constants/colors';
 import {ScreenDimensions} from '../../constants/dimensions';
+import ChordButton from './ChordButton';
+import CustomTitle from './CustomTitle';
+import {GENERALSTLE} from '../../styles/generalStyle';
+import MainContainer from './MainContainer';
 
-interface SongInfoProps {
-  title?: string;
-  image?: string;
-  artistName?: string;
-  onPress?: () => void;
-  style?: StyleProp<ViewStyle>;
-  styleSongName?: StyleProp<ViewStyle>;
-  styleArtist?: StyleProp<ViewStyle>;
-}
-
-const SongInfo: React.FC<SongInfoProps> = props => {
+const SongDetailLoader = () => {
   return (
-    <Pressable onPress={props.onPress} style={styles.container}>
+    <MainContainer>
+      <View style={styles.container}>
         <View style={styles.absolute}>
-          <Image style={styles.image} source={{uri: `${props?.image}`}} />
-          <View style={styles.information}>
-            <Text style={styles.title}>{props.title}</Text>
-            <Text style={styles.name}>by {props.artistName}</Text>
+          <View style={styles.image}></View>
+          <View style={styles.informationPlaceholdle}>
+            <Text style={styles.titlePlaceholdle}></Text>
+            <Text style={styles.namePlaceholdle}></Text>
           </View>
         </View>
-    </Pressable>
+      </View>
+      <View style={GENERALSTLE.paddingHorizontal}>
+        <CustomTitle title="Chords" />
+        <View style={styles.chordsList}>
+          {[...Array(4)].map((item: string, index: number) => (
+            <View key={index}>
+              <ChordButton styleBG={styles.Bg} name="    " />
+            </View>
+          ))}
+        </View>
+      </View>
+    </MainContainer>
   );
 };
 
-export default SongInfo;
+export default SongDetailLoader;
 
 const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
     borderRadius: 20,
     marginHorizontal: 10,
+    marginBottom: 20,
     height: 400,
   },
   absolute: {
@@ -72,11 +70,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     gap: 10,
   },
-  title: {
-    fontFamily: FONTFAMILY.bold,
-    fontSize: 35,
-    color: DARKCOLORS.textColor_2,
-  },
   titlePlaceholdle: {
     backgroundColor: DARKCOLORS.placeholderColor,
     width: '70%',
@@ -89,9 +82,15 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: ScreenDimensions.ScreenWidth,
   },
-  name: {
-    fontFamily: FONTFAMILY.medium,
-    fontSize: FONTSIZE.size_2,
-    color: DARKCOLORS.textColor_4,
+  chordsList: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    rowGap: 10,
+    columnGap: 10,
+    marginVertical: 5,
+  },
+  Bg: {
+    backgroundColor: DARKCOLORS.sencentColor,
   },
 });

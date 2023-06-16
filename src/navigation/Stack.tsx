@@ -13,6 +13,7 @@ import {HEADERSTYLE} from '../styles/generalStyle';
 import ChordLibrary from '../screens/ChordLibrary';
 import ChordGame from '../screens/ChordGame';
 import GameDetail from '../screens/GameDetail';
+import SongGenre from '../screens/SongGenre';
 
 const RootStack = createStackNavigator<RootStackParamList>();
 const Stack = () => {
@@ -21,6 +22,7 @@ const Stack = () => {
       screenOptions={{headerShown: false, animationEnabled: false}}>
       <RootStack.Screen name="Splash" component={Splash} />
       <RootStack.Screen name="MyTabs" component={MyTabs} />
+      <RootStack.Screen name="SongGenre" component={SongGenre} />
       <RootStack.Screen name="SongDetail" component={SongDetail} />
       <RootStack.Screen name="ChordLibrary" component={ChordLibrary} />
       <RootStack.Screen name="ChordGame" component={ChordGame} />

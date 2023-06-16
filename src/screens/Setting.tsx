@@ -48,7 +48,7 @@ const Setting = () => {
       <ScrollView>
         <View style={GENERALSTLE.paddingHorizontal}>
           <ImageBackground
-            blurRadius={5}
+            blurRadius={80}
             resizeMode="cover"
             source={{
               uri: 'https://cafefcdn.com/thumb_w/640/203337114487263232/2023/3/9/photo1678366776583-16783667766431882646483.jpg',

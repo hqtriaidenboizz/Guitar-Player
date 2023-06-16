@@ -10,11 +10,12 @@ interface ISongCategoriesProps {
   image?: string;
   color?: string;
   loading?: boolean;
+  onPress?: () => void;
 }
 
 const SongCategoryItem: React.FC<ISongCategoriesProps> = props => {
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={props.onPress}>
       {props.loading ? (
         <View style={styles.containerPlaceholder}></View>
       ) : (

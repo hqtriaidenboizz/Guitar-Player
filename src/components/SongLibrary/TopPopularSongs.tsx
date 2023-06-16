@@ -33,17 +33,13 @@ const TopPopularSongs = () => {
         data={pending ? [...Array(3)] : topSongs}
         contentContainerStyle={styles.content}
         renderItem={({item}) =>
-          pending ? (
-            <TopSong loader={pending} />
-          ) : (
             <TopSong
-              onPress={() => handleNavigate(item.id)}
-              title={item.songName}
-              image={item.image}
+              onPress={() => handleNavigate(item?.id)}
+              title={item?.songName}
+              image={item?.image}
               loader={pending}
-              artistName={item.artistName}
+              artistName={item?.artistName}
             />
-          )
         }
         horizontal
         showsVerticalScrollIndicator={false}

@@ -13,50 +13,50 @@ import ChordsOfSong from '../components/SongDetail/ChordsOfSong';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchSongDetailRequest} from '../stores/actions/songAction';
 import {RootState} from '../stores/reducers/_index';
-import {Song} from '../types/song';
-import {SongData} from '../assets/Data/FakeData';
+import SongDetailLoader from '../components/Global/SongDetailLoader';
 
 const SongDetail = () => {
   const {songDetail, pending, error} = useSelector(
     (state: RootState) => state.songDetail,
   );
+  const navigation =
+    useNavigation<RootStackScreenProps<'SongDetail'>['navigation']>();
+  const route = useRoute<RootStackScreenProps<'SongDetail'>['route']>();
+  const handleNavigate = () => {
+    navigation.goBack();
+  };
+  const ref = useRef<any>(null);
+  const id = route.params.id;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchSongDetailRequest(id));
   }, []);
-  const ref = useRef<any>(null);
-  const navigation =
-    useNavigation<RootStackScreenProps<'SongDetail'>['navigation']>();
-  const route = useRoute<RootStackScreenProps<'SongDetail'>['route']>();
-  const id = route.params.id;
-  const handleNavigate = () => {
-    navigation.goBack();
-  };
-  const song: Song = songDetail[0];
   return (
     <MainContainer
       onTouchStart={() => {
-        ref.current.unSelect();
+        pending ? null : ref.current.unSelect();
       }}>
       <ScreenHeader onPress={handleNavigate} iconRight={true} />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {pending ? (
-          <SongInfo loading={pending} />
-        ) : (
-          <SongInfo
-            image={song?.image}
-            title={song?.songName}
-            artistName={song?.artistName}
-            style={styles?.songItem}
-          />
-        )}
-        {pending ? null : (
-          <View style={[GENERALSTLE.paddingHorizontal, styles.chords]}>
-            <ChordsOfSong ref={ref} value={song?.chords} />
-            <SongLyrics lyrics={SongData.lyrics} />
-          </View>
-        )}
-      </ScrollView>
+      {pending ? (
+        <SongDetailLoader />
+      ) : (
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {songDetail.map(item => (
+            <View key={item?.id}>
+              <SongInfo
+                image={item?.image}
+                title={item?.songName}
+                artistName={item?.artistName}
+                style={styles?.songItem}
+              />
+              <View style={[GENERALSTLE.paddingHorizontal, styles.chords]}>
+                <ChordsOfSong ref={ref} value={item?.chords} />
+                <SongLyrics lyrics={item?.lyrics} />
+              </View>
+            </View>
+          ))}
+        </ScrollView>
+      )}
     </MainContainer>
   );
 };

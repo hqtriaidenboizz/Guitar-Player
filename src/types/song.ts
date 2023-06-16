@@ -14,6 +14,7 @@ export interface Song {
   chords: Array<string>;
   image: string;
   lyrics: object;
+  categoryID: number;
   artistName: string;
 }
 

@@ -18,7 +18,6 @@ import {useNavigation} from '@react-navigation/native';
 import {RootStackScreenProps} from '../types/navigation/types';
 import MainContainer from '../components/Global/MainContainer';
 
-
 const Home = () => {
   const navigation =
     useNavigation<RootStackScreenProps<'Search'>['navigation']>();
@@ -28,6 +27,7 @@ const Home = () => {
   useEffect(() => {
   LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
 }, [])
+
   return (
     <MainContainer>
       <CustomStatusBar />

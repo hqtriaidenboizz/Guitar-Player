@@ -52,7 +52,7 @@ const ChordsOfSong = forwardRef<MyComponentMethods, Chordprops>(
               <View
                 style={isSelectedTopic(index) ? styles.chord : styles.unshow}>
                 <View>
-                  <Chord nameChord={item} width={90} height={130}/>
+                  <Chord nameChord={item} width={90} height={130} />
                 </View>
               </View>
               <ChordButton

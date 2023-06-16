@@ -22,138 +22,19 @@ export const YourPlaylistData = [
   },
 ];
 
-export const SongCategoryData = [
+export const ToolData = [
   {
     id: 1,
-    title: 'R&B',
-    color: '#70EAE6',
+    title: 'Chord library',
+    address: 'ChordLibrary',
     image:
-      'https://img.websosanh.vn/v10/users/review/images/4629akih9andz/1562149813236_7640013.jpg?compress=85',
+      'https://i.pinimg.com/564x/29/53/c7/2953c737b6f5818dfefbac16be5d1b1d.jpg',
   },
   {
     id: 2,
-    title: 'Rock',
-    color: '#F1B6B0',
+    title: 'Chord Game',
+    address: 'ChordGame',
     image:
-      'https://schoolofrock.imgix.net/img/news-article-hero-750w/allstarsdallas050-edit-1677013329.jpg?auto=format',
-  },
-  {
-    id: 3,
-    title: 'Ballad',
-    color: '#FFFFFF',
-    image:
-      'https://mellamusic.com/wp-content/uploads/2016/05/Songwriting-Tips-for-Ballads.png',
-  },
-  {
-    id: 4,
-    title: 'Indie',
-    color: '#806CFF',
-    image:
-      'https://media.pitchfork.com/photos/5f6e51fa860c31a7582ca1aa/1:1/w_800,h_800,c_limit/POC-edit-Recovered.png',
+      'https://i.pinimg.com/564x/ea/12/92/ea12928ab10bc7906dcb5b4ae6c73142.jpg',
   },
 ];
-
-export const SongData = {
-  songName: 'Yummy',
-  artistName: 'Justin Bieber',
-  view: 5,
-  chords: ['Fmaj7', 'Em7', 'Dm7', 'C7'],
-  image: 'image 1',
-  lyrics: {
-    Intro: [
-      [
-        {
-          chord: 'Fmaj7',
-          lyric: '',
-        },
-        {
-          chord: 'Em7',
-          lyric: '',
-        },
-        {
-          chord: 'Dm7',
-          lyric: '',
-        },
-        {
-          chord: 'Cmaj7',
-          lyric: '',
-        },
-      ],
-    ],
-    Chorus: [
-      [
-        {
-          chord: '',
-          lyric: 'I got my peaches out in',
-        },
-        {
-          chord: 'Fmaj7',
-          lyric: 'Georgia (Oh, yeah, shit)',
-        },
-      ],
-      [
-        {
-          chord: '',
-          lyric: 'I get my weed from',
-        },
-        {
-          chord: 'Fmaj7',
-          lyric: 'California (Thats that shit)',
-        },
-      ],
-      [
-        {
-          chord: '',
-          lyric: 'And I say',
-        },
-        {
-          chord: 'Fmaj7',
-          lyric: 'oh (oh), the way I breathe you',
-        },
-        {
-          chord: 'Em7',
-          lyric: 'in (In)',
-        },
-      ],
-    ],
-    Outtro: [
-      [
-        {
-          chord: 'Fmaj7',
-          lyric: '',
-        },
-        {
-          chord: 'Em7',
-          lyric: '',
-        },
-        {
-          chord: 'Dm7',
-          lyric: '',
-        },
-        {
-          chord: 'Cmaj7',
-          lyric: '',
-        },
-      ],
-      [
-        {
-          chord: 'Fmaj7',
-          lyric: '',
-        },
-        {
-          chord: 'Em7',
-          lyric: '',
-        },
-        {
-          chord: 'Dm7',
-          lyric: '',
-        },
-        {
-          chord: 'Cmaj7',
-          lyric: '',
-        },
-      ],
-    ],
-  },
-  id: '1',
-};

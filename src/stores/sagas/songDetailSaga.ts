@@ -11,7 +11,7 @@ import {AxiosResponse} from 'axios';
 function* fetchSongDetailSaga(id: FetchSongDetailRequest) {
   const songId = id.id;
   try {
-    const response: AxiosResponse = yield call(fetchSongDetailData, songId);
+    const response: AxiosResponse = yield call(fetchSongDetailData, songId);   
     yield put(
       fetchSongDetailSuccess({
         songDetail: response.data,

@@ -5,12 +5,14 @@ import type {
 import type {StackScreenProps} from '@react-navigation/stack';
 import type {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 import { Lession } from '../lession';
+import { Genre } from '../genres';
 
 export type RootStackParamList = {
   Splash: undefined;
   MyTabs: NavigatorScreenParams<RootTabParamList> | undefined;
   SignIn: undefined;
   SongDetail: {id: number};
+  SongGenre: {Genre: Genre};
   Search: undefined;
   ChordLibrary: undefined;
   ChordGame: undefined;

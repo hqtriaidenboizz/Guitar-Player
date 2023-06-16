@@ -47,7 +47,7 @@ const Search = () => {
           {searchResults.length === 0 ? (
             <View style={[styles.notFound, GENERALSTLE.paddingHorizontal]}>
               <Text style={styles.notFoundText}>
-                Not rersults found for "{searchField}"
+                Not results found for "{searchField}"
               </Text>
             </View>
           ) : (
