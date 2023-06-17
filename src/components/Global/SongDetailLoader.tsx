@@ -1,7 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {FONTFAMILY} from '../../constants/fonts';
-import {FONTSIZE} from '../../constants/sizes';
 import {DARKCOLORS} from '../../constants/colors';
 import {ScreenDimensions} from '../../constants/dimensions';
 import ChordButton from './ChordButton';
@@ -22,7 +20,7 @@ const SongDetailLoader = () => {
         </View>
       </View>
       <View style={GENERALSTLE.paddingHorizontal}>
-        <CustomTitle title="Chords" />
+        <CustomTitle title="" />
         <View style={styles.chordsList}>
           {[...Array(4)].map((item: string, index: number) => (
             <View key={index}>
