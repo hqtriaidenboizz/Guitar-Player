@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {API_KEY} from '../constants/Apikey';
 
-const ROOT_URL = 'https://povqcjufmbtvlhvbgtmq.supabase.co/rest/v1/';
+const ROOT_URL = 'https://povqcjufmbtvlhvbgtmq.supabase.co/';
 
 const axiosRequest = axios.create({
   baseURL: ROOT_URL,

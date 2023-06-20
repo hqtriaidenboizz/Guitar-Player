@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import SignIn from '../screens/SignIn';
+import SignIn from '../screens/auth/SignIn';
 const RootAuthStack = createStackNavigator();
 
 const AuthNavigaiton = () => {

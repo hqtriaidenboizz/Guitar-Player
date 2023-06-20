@@ -11,6 +11,7 @@ export type RootStackParamList = {
   Splash: undefined;
   MyTabs: NavigatorScreenParams<RootTabParamList> | undefined;
   SignIn: undefined;
+  SignUp: undefined;
   SongDetail: {id: number};
   SongGenre: {Genre: Genre};
   Search: undefined;

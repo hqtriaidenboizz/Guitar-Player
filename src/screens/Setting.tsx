@@ -24,13 +24,18 @@ import {
   SoundOff,
 } from 'iconoir-react-native';
 import {SettingItemData} from '../constants/settingItem';
-import setVolumeInAsyncStorage from '../utils/setInAsyncStore';
 import {getValueFromAsyncStorage} from '../utils/getValueAsyncStore';
+import setValueInAsyncStorage from '../utils/setInAsyncStore';
+import {useNavigation} from '@react-navigation/native';
+import {HomeTabScreenProps} from '../types/navigation/types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Setting = () => {
   const [volume, setVolume] = useState<number>(0);
+  const navigation =
+    useNavigation<HomeTabScreenProps<'Setting'>['navigation']>();
   const handleGetVolume = async (value: number) => {
     setVolume(value);
-    await setVolumeInAsyncStorage('volume', value);
+    await setValueInAsyncStorage('volume', value);
   };
   const getVolumeData = async () => {
     const volume = await getValueFromAsyncStorage('volume');
@@ -42,6 +47,24 @@ const Setting = () => {
     getVolumeData();
   }, []);
   console.log(volume);
+
+  const handleLogOut = () => {
+    AsyncStorage.removeItem('user_Info')
+    navigation.navigate('SignIn');
+  };
+  const handleOnPress = (type: string) => {
+    switch (type) {
+      case 'Logout': {
+        return handleLogOut();
+      }
+      case 'Account': {
+        return console.log('account');
+      }
+      case 'About': {
+        return console.log('About me');
+      }
+    }
+  };
 
   return (
     <MainContainer>
@@ -124,7 +147,10 @@ const Setting = () => {
           </View>
           <View style={styles.settingBottom}>
             {SettingItemData.map((item: any, index: number) => (
-              <Pressable key={index} style={styles.settingItem}>
+              <Pressable
+                onPress={() => handleOnPress(item.title)}
+                key={index}
+                style={styles.settingItem}>
                 <View style={styles.settingItemRight}>
                   <View style={styles.icon}>{item.icon}</View>
                   <Text style={styles.itemText}>{item.title}</Text>

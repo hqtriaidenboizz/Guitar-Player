@@ -22,6 +22,7 @@ interface ICustomInputProps {
   onFocus?: () => void;
   style?: StyleProp<ViewStyle>;
   autoFocus?: boolean;
+  onBlur?: () =>void,
   showSoftInputOnFocus?: boolean;
 }
 
@@ -33,6 +34,7 @@ const CustomInput: React.FC<ICustomInputProps> = props => {
         showSoftInputOnFocus={props.showSoftInputOnFocus}
         autoFocus={props.autoFocus}
         onFocus={props.onFocus}
+        onBlur={props.onBlur}
         onChangeText={props.onChangeText}
         secureTextEntry={props.secureText}
         placeholderTextColor={DARKCOLORS.textColor_1}
