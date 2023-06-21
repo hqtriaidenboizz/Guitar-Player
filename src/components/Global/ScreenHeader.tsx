@@ -8,12 +8,13 @@ import {FONTSIZE} from '../../constants/sizes';
 interface ScreenHeaderProps {
   title?: string;
   iconRight?: boolean;
-  isLove?: boolean;
+  inPlayList: boolean;
   onPress?: () => void;
 }
 
 const ScreenHeader: React.FC<ScreenHeaderProps> = props => {
-  const [isLove, setIsLove] = useState<boolean>(false);
+  const [isLove, setIsLove] = useState<boolean>(props.inPlayList);
+    
   const handleLoveIcon = () => {
     setIsLove(!isLove);
   };

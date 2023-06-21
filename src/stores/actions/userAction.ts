@@ -15,7 +15,7 @@ export const fetchUserRequest = (id: string): FetchUserRequest => ({
 export const fetchUserSuccess = (
   payload: FetchUserSuccessPayload,
 ): FetchUserSuccess => ({
-  type: 'FETCH_SONG_SUCCESS',
+  type: 'FETCH_USER_SUCCESS',
   payload,
 });
 

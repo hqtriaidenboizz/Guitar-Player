@@ -29,6 +29,8 @@ import setValueInAsyncStorage from '../utils/setInAsyncStore';
 import {useNavigation} from '@react-navigation/native';
 import {HomeTabScreenProps} from '../types/navigation/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useSelector} from 'react-redux';
+import {RootState} from '../stores/reducers/_index';
 const Setting = () => {
   const [volume, setVolume] = useState<number>(0);
   const navigation =
@@ -43,15 +45,19 @@ const Setting = () => {
       setVolume(volume);
     }
   };
+
   useEffect(() => {
     getVolumeData();
   }, []);
   console.log(volume);
 
   const handleLogOut = () => {
-    AsyncStorage.removeItem('user_Info')
+    AsyncStorage.removeItem('user_Info');
     navigation.navigate('SignIn');
   };
+
+  const {user} = useSelector((state: RootState) => state.user);
+  
   const handleOnPress = (type: string) => {
     switch (type) {
       case 'Logout': {
@@ -74,16 +80,16 @@ const Setting = () => {
             blurRadius={80}
             resizeMode="cover"
             source={{
-              uri: 'https://cafefcdn.com/thumb_w/640/203337114487263232/2023/3/9/photo1678366776583-16783667766431882646483.jpg',
+              uri: `${user?.avatar}`,
             }}
             style={styles.InfoAccount}>
             <Image
               style={styles.avatar}
               source={{
-                uri: 'https://cafefcdn.com/thumb_w/640/203337114487263232/2023/3/9/photo1678366776583-16783667766431882646483.jpg',
+                uri: `${user?.avatar}`,
               }}
             />
-            <Text style={styles.name}>Alexander-Arnold</Text>
+            <Text style={styles.name}>{user?.userName}</Text>
           </ImageBackground>
           <View style={styles.settings}>
             <View style={styles.setting}>

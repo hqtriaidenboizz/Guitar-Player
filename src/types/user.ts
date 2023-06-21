@@ -8,6 +8,7 @@ import {FETCH_SONG_SUCCESS} from '../stores/actions/songActionTypes';
 import {
   FETCH_USER_FAILURE,
   FETCH_USER_REQUEST,
+  FETCH_USER_SUCCESS,
 } from '../stores/actions/userActionType';
 
 export interface User {
@@ -64,7 +65,7 @@ export interface FetchUserRequest {
 }
 
 export interface FetchUserSuccess {
-  type: typeof FETCH_SONG_SUCCESS;
+  type: typeof FETCH_USER_SUCCESS;
   payload: FetchUserSuccessPayload;
 }
 

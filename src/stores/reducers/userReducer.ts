@@ -1,11 +1,12 @@
-import { UserActions, UserState } from "../../types/user";
+import {UserActions, UserState} from '../../types/user';
 
 const initialState: UserState = {
   user: null,
   accessToken: null,
   pending: false,
-  error:null,
+  error: null,
 };
+
 const userReducer = (state = initialState, action: UserActions) => {
   switch (action.type) {
     case 'SIGNIN_REQUEST':
@@ -20,6 +21,24 @@ const userReducer = (state = initialState, action: UserActions) => {
         accessToken: action.payload.accessToken,
       };
     case 'SIGNIN_FAILURE':
+      return {
+        ...state,
+        pending: false,
+        error: action.payload.error,
+      };
+    case 'FETCH_USER_REQUEST':
+      return {
+        ...state,
+        pending: true,
+      };
+    case 'FETCH_USER_SUCCESS':
+      return {
+        ...state,
+        pending: false,
+        user: action.payload.user,
+      };
+
+    case 'FETCH_USER_FAILURE':
       return {
         ...state,
         pending: false,

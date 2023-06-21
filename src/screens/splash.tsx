@@ -1,53 +1,62 @@
 import {StyleSheet} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import {DARKCOLORS} from '../constants/colors';
-import {StackNavigationProp} from '@react-navigation/stack';
 
 import Lottie from 'lottie-react-native';
 import CustomStatusBar from '../constants/StatusBar';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackScreenProps} from '../types/navigation/types';
 import MainContainer from '../components/Global/MainContainer';
-import { getValueFromAsyncStorage } from '../utils/getValueAsyncStore';
+import {getValueFromAsyncStorage} from '../utils/getValueAsyncStore';
+import {fetchUserRequest} from '../stores/actions/userAction';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../stores/reducers/_index';
 
 const Splash = () => {
-  const [isLogin,setIsLogin] = useState<boolean>(false)
-  const [access_token,setAccess_token] = useState<string>('')
-  const [userId, setUserId] = useState<string>('')
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [play, setPlay] = useState<boolean>(true);
+  const [loader, setLoader] = useState<boolean>(false);
+  const [access_token, setAccess_token] = useState<string>('');
+  const [userId, setUserId] = useState<string>('');
   const navigation =
     useNavigation<RootStackScreenProps<'Splash'>['navigation']>();
-  const [loader, setLoader] = useState<boolean>(false);
-  
-  useEffect(() => {
-    setTimeout(() => {
-      setLoader(true);
-    }, 2500);
-  }, []);
+  const dispatch = useDispatch();
+  const {user} = useSelector((state: RootState) => state.user);
+  console.log('user', user);
 
   useEffect(() => {
     handleGetAccessToken();
-    if (loader) {
-      navigation.replace(isLogin ? 'MyTabs': 'SignIn');
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(true);
+    }, 3000);
+  }, []);
+  useEffect(() => {
+    if (loader === true) {
+      navigation.replace(isLogin ? 'MyTabs' : 'SignIn');
     }
   }, [loader]);
 
-    const handleGetAccessToken = async () => {
+  const handleGetAccessToken = async () => {
     const user_Info = await getValueFromAsyncStorage('user_Info');
-    console.log(user_Info);
-    
-    if(user_Info){
-      setAccess_token(user_Info?.access_token)
-      setUserId(user_Info?.user_id)
-      setIsLogin(!isLogin)
+    if (user_Info) {
+      setAccess_token(user_Info?.access_token);
+      setUserId(user_Info?.user_id);
+      setIsLogin(!isLogin);
     }
-  }
+    if (user_Info) {
+      dispatch(fetchUserRequest(user_Info?.user_id));
+    }
+  };
 
   return (
     <MainContainer>
       <CustomStatusBar />
       <Lottie
+        loop={false}
         source={require('../assets/images/logoGuitarPlayer.json')}
-        autoPlay
+        autoPlay={play}
       />
     </MainContainer>
   );

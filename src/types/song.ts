@@ -1,4 +1,7 @@
 import {
+  FETCH_FAVSONGS_FAILURE,
+  FETCH_FAVSONGS_REQUEST,
+  FETCH_FAVSONGS_SUCCESS,
   FETCH_SONGDETAIL_FAILURE,
   FETCH_SONGDETAIL_REQUEST,
   FETCH_SONGDETAIL_SUCCESS,
@@ -8,7 +11,7 @@ import {
 } from '../stores/actions/songActionTypes';
 
 export interface Song {
-  id: string;
+  id: number;
   songName: string;
   view: number;
   chords: Array<string>;
@@ -86,3 +89,51 @@ export type SongDetailActions =
   | FetchSongDetailFailure
   | FetchSongDetailSuccess
   | FetchSongDetailRequest;
+
+// favslistSong
+export interface favSong {
+  artistName: string;
+  id: number;
+  image: string;
+  songName: string;
+}
+
+export interface FavSongs {
+  songId: number;
+  id: number
+  songs: favSong;
+}
+
+export interface FavsSongsState {
+  pending: boolean;
+  favSongs: FavSongs[];
+  error: string | null;
+}
+
+export interface FetchFavSongsSuccessPayload {
+  favSongs: FavSongs[];
+}
+
+export interface FetchFavSongsFailurePayload {
+  error: string;
+}
+
+export type FetchFavSongsRequest = {
+  type: typeof FETCH_FAVSONGS_REQUEST;
+  id: string | undefined ;
+};
+
+export type FetchFavSongsSuccess = {
+  type: typeof FETCH_FAVSONGS_SUCCESS;
+  payload: FetchFavSongsSuccessPayload;
+};
+
+export type FetchFavSongsFailure = {
+  type: typeof FETCH_FAVSONGS_FAILURE;
+  payload: FetchFavSongsFailurePayload;
+};
+
+export type FetchFavSongsActions =
+  | FetchFavSongsFailure
+  | FetchFavSongsRequest
+  | FetchFavSongsSuccess;

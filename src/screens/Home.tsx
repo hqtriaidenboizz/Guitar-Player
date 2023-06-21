@@ -1,9 +1,6 @@
 import {
-  FlatList,
   ScrollView,
   StyleSheet,
-  Text,
-  TouchableHighlight,
   View,
   LogBox
 } from 'react-native';
@@ -24,9 +21,10 @@ const Home = () => {
   const handleNavigate = () => {
     navigation.navigate('Search');
   };
+  
   useEffect(() => {
-  LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
-}, [])
+    LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
+  }, [])
 
   return (
     <MainContainer>

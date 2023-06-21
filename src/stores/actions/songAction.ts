@@ -1,4 +1,9 @@
 import {
+  FetchFavSongsFailure,
+  FetchFavSongsFailurePayload,
+  FetchFavSongsRequest,
+  FetchFavSongsSuccess,
+  FetchFavSongsSuccessPayload,
   FetchSongDetailFailure,
   FetchSongDetailFailurePayload,
   FetchSongDetailRequest,
@@ -47,5 +52,26 @@ export const fetchSongDetailFailure = (
   payload: FetchSongDetailFailurePayload,
 ): FetchSongDetailFailure => ({
   type: 'FETCH_SONGDETAIL_FAILURE',
+  payload,
+});
+
+// fetch fav songs
+
+export const fetchFavSongsRequest = (id: string | undefined): FetchFavSongsRequest => ({
+  type: 'FETCH_FAVSONGS_REQUEST',
+  id: id,
+});
+
+export const fetchFavSongsSuccess = (
+  payload: FetchFavSongsSuccessPayload,
+): FetchFavSongsSuccess => ({
+  type: 'FETCH_FAVSONGS_SUCCESS',
+  payload,
+});
+
+export const fetchFavSongsFailure = (
+  payload: FetchFavSongsFailurePayload,
+): FetchFavSongsFailure => ({
+  type: 'FETCH_FAVSONGS_FAILURE',
   payload,
 });

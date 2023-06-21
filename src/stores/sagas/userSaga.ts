@@ -1,11 +1,12 @@
 import {call, all, takeEvery, put} from 'redux-saga/effects';
 import {SIGNIN_REQUEST} from '../actions/signInActionTypes';
 import {AxiosResponse} from 'axios';
-import {CommonActions, useNavigation} from '@react-navigation/native';
-import {SignInRequest} from '../../types/user';
-import {signInUser} from '../../API/user';
+import {FetchUserRequest, SignInRequest} from '../../types/user';
+import {fetchUserData, signInUser} from '../../API/user';
 import {signInFailure, signInSuccess} from '../actions/signInAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {fetchUserFailure, fetchUserSuccess} from '../actions/userAction';
+import {FETCH_USER_REQUEST} from '../actions/userActionType';
 
 function* signSaga(data: SignInRequest) {
   try {
@@ -31,11 +32,26 @@ function* signSaga(data: SignInRequest) {
   }
 }
 
-function*fetchUserData(){
-  
+function* fetchUserSaga(id: FetchUserRequest) {
+  try {
+    const response: AxiosResponse = yield call(fetchUserData, id.id);
+    yield put(
+      fetchUserSuccess({
+        user: response.data[0],
+      }),
+    );
+  } catch (error: any) {
+    yield put(
+      fetchUserFailure({
+        error: error.message,
+      }),
+    );
+  }
 }
 
 function* userSaga() {
   yield all([takeEvery(SIGNIN_REQUEST, signSaga)]);
+  yield all([takeEvery(FETCH_USER_REQUEST, fetchUserSaga)]);
 }
+
 export default userSaga;
