@@ -7,7 +7,7 @@ import {
   FetchUserSuccessPayload,
 } from '../../types/user';
 
-export const fetchUserRequest = (id: string): FetchUserRequest => ({
+export const fetchUserRequest = (id: string | undefined): FetchUserRequest => ({
   type: 'FETCH_USER_REQUEST',
   id,
 });

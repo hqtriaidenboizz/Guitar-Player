@@ -1,3 +1,4 @@
+import { addFavSongTypes } from '../types/song';
 import axiosRequest from './_index';
 
 export const fetchSongsData = async () => {
@@ -10,13 +11,17 @@ export const fetchSongDetailData = async (id: number) => {
   return await axiosRequest.get(url);
 };
 
-export const fetchFavsSongData = async (id: string | undefined) =>{
+export const fetchFavsSongData = async (id: string | undefined) => {
   const url = `rest/v1/favoritesList?userId=eq.${id}&select=songId,id,songs(id,songName,image,artistName)`;
-  return await axiosRequest.get(url)
-}
+  return await axiosRequest.get(url);
+};
 
-export const deleteFavSong =async (id:string | undefined) => {
-  const url = `https://povqcjufmbtvlhvbgtmq.supabase.co/rest/v1/favoritesList?songId=eq.4`;
-}
+export const addFavSong = async (Data: addFavSongTypes) => {
+  const url = 'rest/v1/favoritesList';
+  return await axiosRequest.post(url, Data);
+};
 
-
+export const deleteFavSong = async (id: number | undefined) => {
+  const url = `rest/v1/favoritesList?id=eq.${id}`;
+  return await axiosRequest.delete(url);
+};

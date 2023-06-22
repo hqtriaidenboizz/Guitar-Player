@@ -27,14 +27,14 @@ import {SettingItemData} from '../constants/settingItem';
 import {getValueFromAsyncStorage} from '../utils/getValueAsyncStore';
 import setValueInAsyncStorage from '../utils/setInAsyncStore';
 import {useNavigation} from '@react-navigation/native';
-import {HomeTabScreenProps} from '../types/navigation/types';
+import {HomeTabScreenProps, RootStackScreenProps} from '../types/navigation/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useSelector} from 'react-redux';
 import {RootState} from '../stores/reducers/_index';
 const Setting = () => {
   const [volume, setVolume] = useState<number>(0);
   const navigation =
-    useNavigation<HomeTabScreenProps<'Setting'>['navigation']>();
+    useNavigation<RootStackScreenProps<'MyTabs'>['navigation']>();
   const handleGetVolume = async (value: number) => {
     setVolume(value);
     await setValueInAsyncStorage('volume', value);
@@ -49,11 +49,10 @@ const Setting = () => {
   useEffect(() => {
     getVolumeData();
   }, []);
-  console.log(volume);
 
   const handleLogOut = () => {
     AsyncStorage.removeItem('user_Info');
-    navigation.navigate('SignIn');
+    navigation.navigate('SignIn')
   };
 
   const {user} = useSelector((state: RootState) => state.user);

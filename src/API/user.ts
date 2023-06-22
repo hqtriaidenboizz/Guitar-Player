@@ -6,7 +6,7 @@ export const signInUser = async (Data: SignInFormData) => {
   return await axiosRequest.post(url, Data);
 };
 
-export const fetchUserData = async (id: string) => {
+export const fetchUserData = async (id: string | undefined) => {
   const url = `rest/v1/userInfo?id=eq.${id}&select=*`;
   return await axiosRequest.get(url)
 }

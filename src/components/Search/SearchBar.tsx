@@ -16,7 +16,7 @@ interface SearchBarProps {
   autoFocus?: boolean;
   value?:string; 
   onPress?: () => void;
-  onChangeText?: (text: string) => void;
+  onChangeText: (text: string) => void;
   showSoftInputOnFocus?: boolean;
 }
 const SearchBar: React.FC<SearchBarProps> = props => {

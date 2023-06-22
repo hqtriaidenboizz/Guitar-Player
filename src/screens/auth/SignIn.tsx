@@ -16,6 +16,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {signInRequest} from '../../stores/actions/signInAction';
 import {RootState} from '../../stores/reducers/_index';
 import Loading from '../../components/Global/Loading';
+import {fetchUserRequest} from '../../stores/actions/userAction';
+import {handleGetUserInfo} from '../../utils/getUserInfoAsyncStore';
 
 export interface SignInFormData {
   email: string;
@@ -45,6 +47,13 @@ const SignIn = () => {
   };
   useEffect(() => {
     if (accessToken !== null) {
+      const getUserId = async () => {
+        const user_Info = await handleGetUserInfo();
+        if (user_Info) {
+          dispatch(fetchUserRequest(user_Info?.user_id));
+        }
+      };
+      getUserId();
       navigation.navigate('MyTabs');
     }
   }, [accessToken]);

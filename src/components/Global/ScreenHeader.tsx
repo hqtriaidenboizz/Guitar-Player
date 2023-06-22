@@ -4,19 +4,50 @@ import {Heart, NavArrowDown} from 'iconoir-react-native';
 import {DARKCOLORS} from '../../constants/colors';
 import {FONTFAMILY} from '../../constants/fonts';
 import {FONTSIZE} from '../../constants/sizes';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  addFavSongRequest,
+  removeFavSongReques,
+} from '../../stores/actions/songAction';
+import {RootState} from '../../stores/reducers/_index';
+import {addFavSongTypes} from '../../types/song';
 
 interface ScreenHeaderProps {
   title?: string;
   iconRight?: boolean;
-  inPlayList: boolean;
+  inPlayList?: boolean;
   onPress?: () => void;
+  songId?: number | undefined;
+  idFavSong?: number | undefined;
 }
 
 const ScreenHeader: React.FC<ScreenHeaderProps> = props => {
-  const [isLove, setIsLove] = useState<boolean>(props.inPlayList);
-    
+  const [isLove, setIsLove] = useState<boolean | undefined>(props.inPlayList);
+  const {favSongs} = useSelector((state: RootState) => state.favSongs);
+  const {user} = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
   const handleLoveIcon = () => {
-    setIsLove(!isLove);
+    if (isLove === true) {
+      const payload = {
+        id: props.idFavSong,
+        FavSongs: favSongs,
+      };
+      setIsLove(!isLove);
+      dispatch(removeFavSongReques(payload));
+    } else {
+      const addFavSongTypes: addFavSongTypes = {
+        songId: props.songId,
+        userId: user?.id,
+      };
+      console.log('loggggg',addFavSongTypes);
+      
+      const payload = {
+        addFavSongTypes,
+        favSongs: favSongs,
+      };
+      setIsLove(!isLove);
+      dispatch(addFavSongRequest(payload));
+    }
   };
   return (
     <View style={styles.container}>
@@ -28,14 +59,15 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = props => {
       />
       <Text style={styles.title}>{props.title}</Text>
       {props.iconRight ? (
-          <Heart
+        <Heart
           onPress={handleLoveIcon}
           color={isLove ? '#F40824' : DARKCOLORS.textColor_1}
           width={30}
           height={30}
         />
-      ): <View style={{width: 30}}>
-      </View> }
+      ) : (
+        <View style={{width: 30}}></View>
+      )}
     </View>
   );
 };

@@ -1,4 +1,7 @@
 import {
+  ADD_FAVSONG_FAILURE,
+  ADD_FAVSONG_REQUEST,
+  ADD_FAVSONG_SUCCESS,
   FETCH_FAVSONGS_FAILURE,
   FETCH_FAVSONGS_REQUEST,
   FETCH_FAVSONGS_SUCCESS,
@@ -8,6 +11,9 @@ import {
   FETCH_SONG_FAILURE,
   FETCH_SONG_REQUEST,
   FETCH_SONG_SUCCESS,
+  REMOVE_FAVSONG_FAILURE,
+  REMOVE_FAVSONG_REQUEST,
+  REMOVE_FAVSONG_SUCCESS,
 } from '../stores/actions/songActionTypes';
 
 export interface Song {
@@ -100,7 +106,7 @@ export interface favSong {
 
 export interface FavSongs {
   songId: number;
-  id: number
+  id: number;
   songs: favSong;
 }
 
@@ -120,7 +126,7 @@ export interface FetchFavSongsFailurePayload {
 
 export type FetchFavSongsRequest = {
   type: typeof FETCH_FAVSONGS_REQUEST;
-  id: string | undefined ;
+  id: string | undefined;
 };
 
 export type FetchFavSongsSuccess = {
@@ -133,7 +139,72 @@ export type FetchFavSongsFailure = {
   payload: FetchFavSongsFailurePayload;
 };
 
-export type FetchFavSongsActions =
+
+// add fav song
+export interface addFavSongTypes {
+  songId: number | undefined;
+  userId: string | undefined;
+}
+export interface AddFavSongRequestPayload {
+  addFavSongTypes: addFavSongTypes ;
+  favSongs: FavSongs[];
+}
+
+
+
+export interface AddFavSongFailurePayload {
+  error: string;
+}
+
+export type AddFavSongRequest = {
+  type: typeof ADD_FAVSONG_REQUEST,
+  payload: AddFavSongRequestPayload,
+}
+
+export type AddFavSongSuccess = {
+  type: typeof ADD_FAVSONG_SUCCESS,
+}
+
+export type AddFavSongFailure = {
+  type: typeof ADD_FAVSONG_FAILURE,
+  payload: AddFavSongFailurePayload,
+}
+
+// delete fav song
+export interface RemoveFavSongRequestPayload {
+  id: number | undefined,
+  FavSongs: FavSongs[]
+} 
+
+export interface RemoveFavSongFailurePayload {
+  error: string;
+}
+export interface RemoveFavSongSuccessPayload {
+  favSongs: FavSongs[];
+}
+
+export interface RemoveFavSongRequest {
+  type: typeof REMOVE_FAVSONG_REQUEST;
+  payload: RemoveFavSongRequestPayload;
+}
+
+export type RemoveFavSongSuccess = {
+  type: typeof REMOVE_FAVSONG_SUCCESS;
+  payload: RemoveFavSongSuccessPayload;
+};
+
+export type RemoveFavSongFailure = {
+  type: typeof REMOVE_FAVSONG_FAILURE;
+  payload: RemoveFavSongFailurePayload;
+};
+
+export type FavSongsActions =
+  | RemoveFavSongFailure
+  | RemoveFavSongSuccess
+  | RemoveFavSongRequest
+  | AddFavSongFailure
+  | AddFavSongRequest
+  | AddFavSongSuccess
   | FetchFavSongsFailure
   | FetchFavSongsRequest
   | FetchFavSongsSuccess;

@@ -61,7 +61,7 @@ export interface FetchUserFailurePayload {
 
 export interface FetchUserRequest {
   type: typeof FETCH_USER_REQUEST;
-  id: string;
+  id: string | undefined;
 }
 
 export interface FetchUserSuccess {

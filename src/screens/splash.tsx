@@ -9,7 +9,6 @@ import MainContainer from '../components/Global/MainContainer';
 import {getValueFromAsyncStorage} from '../utils/getValueAsyncStore';
 import {fetchUserRequest} from '../stores/actions/userAction';
 import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../stores/reducers/_index';
 
 const Splash = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -20,9 +19,7 @@ const Splash = () => {
   const navigation =
     useNavigation<RootStackScreenProps<'Splash'>['navigation']>();
   const dispatch = useDispatch();
-  const {user} = useSelector((state: RootState) => state.user);
-  console.log('user', user);
-
+  
   useEffect(() => {
     handleGetAccessToken();
   }, []);
