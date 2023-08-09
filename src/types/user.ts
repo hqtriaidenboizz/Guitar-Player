@@ -1,10 +1,15 @@
 import {SignInFormData} from '../screens/auth/SignIn';
 import {
+  FETCH_LESSONDATAUSER_FAILURE,
+  FETCH_LESSONDATAUSER_REQUEST,
+  FETCH_LESSONDATAUSER_SUCCESS,
+} from '../stores/actions/lessonsActionTypes';
+import {
   SIGNIN_FAILURE,
   SIGNIN_REQUEST,
   SIGNIN_SUCCESS,
 } from '../stores/actions/signInActionTypes';
-import {FETCH_SONG_SUCCESS} from '../stores/actions/songActionTypes';
+
 import {
   FETCH_USER_FAILURE,
   FETCH_USER_REQUEST,
@@ -81,3 +86,51 @@ export type UserActions =
   | SignInRequest
   | SignInFailure
   | SignInSuccess;
+
+// lesson Data of user
+
+export interface lessonDataUser {
+  id: string;
+  lessonId: number;
+  userId: string;
+  status: boolean;
+  score: number;
+}
+
+export interface lessonDataUserState {
+  pending: boolean;
+  lessonDataUser: lessonDataUser[];
+  error: string | null;
+}
+
+export interface FetchLessonDataUserSuccessPayload {
+  data: lessonDataUser[];
+}
+
+export interface FetchLessonDataUserFailurePayload {
+  error: string;
+}
+
+export interface FetchLessonDataUserRequestPayload {
+  id: string;
+}
+
+export type FetchLessonDataUserRequest = {
+  type: typeof FETCH_LESSONDATAUSER_REQUEST;
+  payload: FetchLessonDataUserRequestPayload;
+};
+
+export type FetchLessonDataUserSuccess = {
+  type: typeof FETCH_LESSONDATAUSER_SUCCESS;
+  payload: FetchLessonDataUserSuccessPayload;
+};
+
+export type FetchLessonDataUserFailure = {
+  type: typeof FETCH_LESSONDATAUSER_FAILURE;
+  payload: FetchLessonDataUserFailurePayload;
+};
+
+export type LessonDataUserActions =
+  | FetchLessonDataUserRequest
+  | FetchLessonDataUserSuccess
+  | FetchLessonDataUserFailure;

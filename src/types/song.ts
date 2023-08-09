@@ -61,7 +61,7 @@ export type SongsActions =
   | FetchSongsRequest;
 
 // songdetail
-
+ 
 export interface SongDetailState {
   pending: boolean;
   songDetail: Song[];
@@ -139,42 +139,39 @@ export type FetchFavSongsFailure = {
   payload: FetchFavSongsFailurePayload;
 };
 
-
 // add fav song
 export interface addFavSongTypes {
   songId: number | undefined;
   userId: string | undefined;
 }
 export interface AddFavSongRequestPayload {
-  addFavSongTypes: addFavSongTypes ;
+  addFavSongTypes: addFavSongTypes;
   favSongs: FavSongs[];
 }
-
-
 
 export interface AddFavSongFailurePayload {
   error: string;
 }
 
 export type AddFavSongRequest = {
-  type: typeof ADD_FAVSONG_REQUEST,
-  payload: AddFavSongRequestPayload,
-}
+  type: typeof ADD_FAVSONG_REQUEST;
+  payload: AddFavSongRequestPayload;
+};
 
 export type AddFavSongSuccess = {
-  type: typeof ADD_FAVSONG_SUCCESS,
-}
+  type: typeof ADD_FAVSONG_SUCCESS;
+};
 
 export type AddFavSongFailure = {
-  type: typeof ADD_FAVSONG_FAILURE,
-  payload: AddFavSongFailurePayload,
-}
+  type: typeof ADD_FAVSONG_FAILURE;
+  payload: AddFavSongFailurePayload;
+};
 
 // delete fav song
 export interface RemoveFavSongRequestPayload {
-  id: number | undefined,
-  FavSongs: FavSongs[]
-} 
+  id: number | undefined;
+  FavSongs: FavSongs[];
+}
 
 export interface RemoveFavSongFailurePayload {
   error: string;

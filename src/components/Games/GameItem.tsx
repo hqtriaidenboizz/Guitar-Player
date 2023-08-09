@@ -11,7 +11,7 @@ import {RootStackScreenProps} from '../../types/navigation/types';
 
 interface GameItemProps {
   status: boolean;
-  score: number;
+  score: number ;
   title: string;
   chordList: Array<string>;
 }
@@ -32,10 +32,9 @@ const GameItem: React.FC<GameItemProps> = props => {
       <AnimatedCircularProgress
         size={120}
         width={15}
-        fill={props.score}
+        fill={props?.score}
         rotation={360}
         tintColor={DARKCOLORS.hightLightColor}
-        onAnimationComplete={() => console.log('onAnimationComplete')}
         backgroundColor={DARKCOLORS.primaryColor}>
         {() => <Text style={styles.score}>{props.score}%</Text>}
       </AnimatedCircularProgress>

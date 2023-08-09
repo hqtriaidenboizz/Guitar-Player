@@ -1,11 +1,11 @@
 import {GenreState, GenresActions} from '../../types/genres';
-import * as genreActioTypes from '../actions/genreActionTypes';
-const initalState: GenreState = {
+
+const initialState: GenreState = {
   pending: false,
   genres: [],
   error: null,
 };
-const genreReducer = (state = initalState, actions: GenresActions) => {
+const genreReducer = (state = initialState, actions: GenresActions) => {
   switch (actions.type) {
     case 'FETCH_GENRE_REQUEST':
       return {

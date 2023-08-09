@@ -4,7 +4,7 @@ import type {
 } from '@react-navigation/native';
 import type {StackScreenProps} from '@react-navigation/stack';
 import type {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
-import { Lession } from '../lession';
+import { Lession } from '../lesson';
 import { Genre } from '../genres';
 
 export type RootStackParamList = {
